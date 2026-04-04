@@ -11,13 +11,13 @@
       color: white;
     }
 
-    /* MENU */
     nav {
       background: #1e293b;
       padding: 15px;
       display: flex;
       justify-content: center;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -32,7 +32,7 @@
 
     header {
       text-align: center;
-      padding: 30px;
+      padding: 40px;
     }
 
     h1 {
@@ -70,14 +70,14 @@
       object-fit: cover;
     }
 
-    .sin-stock {
-      filter: grayscale(100%);
-      opacity: 0.5;
-    }
-
     .precio {
       color: #38bdf8;
       font-weight: bold;
+    }
+
+    .sin-stock {
+      filter: grayscale(100%);
+      opacity: 0.5;
     }
 
     button {
@@ -89,13 +89,24 @@
       cursor: pointer;
     }
 
-    /* FOOTER */
+    /* GALERIA */
+    .galeria {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .galeria img {
+      width: 200px;
+      border-radius: 10px;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
       background: #1e293b;
     }
-
   </style>
 </head>
 
@@ -104,55 +115,71 @@
   <!-- MENU -->
   <nav>
     <a href="#productos">Productos</a>
-    <a href="#precios">Precios</a>
+    <a href="#como">Cómo pedir</a>
+    <a href="#galeria">Galería</a>
+    <a href="#sobre">Sobre nosotros</a>
     <a href="#contacto">Contacto</a>
-    <a href="#ubicacion">Ubicación</a>
   </nav>
 
   <!-- HEADER -->
   <header>
     <h1>Sublimación Medina</h1>
-    <p>Remeras, tazas, llaveros y más</p>
+    <p>Diseños personalizados para cada ocasión</p>
   </header>
 
   <!-- PRODUCTOS -->
   <section id="productos">
-    <h2 style="text-align:center;">Productos</h2>
+    <h2>Catálogo</h2>
 
     <div class="productos">
 
       <div class="card">
         <img src="https://via.placeholder.com/200">
         <h3>Remeras</h3>
-        <p>Diseños personalizados</p>
         <p class="precio">$5000</p>
+        <button onclick="whatsapp()">Consultar</button>
+      </div>
+
+      <div class="card">
+        <img src="https://via.placeholder.com/200">
+        <h3>Tazas</h3>
+        <p class="precio">$3000</p>
         <button onclick="whatsapp()">Consultar</button>
       </div>
 
       <div class="card sin-stock">
         <img src="https://via.placeholder.com/200">
-        <h3>Tazas</h3>
-        <p>Sin stock</p>
-        <p class="precio">$3000</p>
-      </div>
-
-      <div class="card">
-        <img src="https://via.placeholder.com/200">
         <h3>Llaveros</h3>
-        <p>Con fotos o nombres</p>
-        <p class="precio">$2000</p>
-        <button onclick="whatsapp()">Consultar</button>
+        <p>Sin stock</p>
       </div>
 
     </div>
   </section>
 
-  <!-- PRECIOS -->
-  <section id="precios">
-    <h2>Lista de precios</h2>
-    <p>Remeras: $5000</p>
-    <p>Tazas: $3000</p>
-    <p>Llaveros: $2000</p>
+  <!-- COMO PEDIR -->
+  <section id="como">
+    <h2>¿Cómo pedir?</h2>
+    <p>1. Elegí el producto</p>
+    <p>2. Mandanos tu diseño o idea</p>
+    <p>3. Confirmamos el pedido</p>
+    <p>4. Entrega o envío</p>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria">
+    <h2>Galería</h2>
+
+    <div class="galeria">
+      <img src="https://via.placeholder.com/200">
+      <img src="https://via.placeholder.com/200">
+      <img src="https://via.placeholder.com/200">
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section id="sobre">
+    <h2>Sobre nosotros</h2>
+    <p>Somos un emprendimiento familiar dedicado a la sublimación de productos personalizados.</p>
   </section>
 
   <!-- CONTACTO -->
@@ -162,20 +189,6 @@
     <p>WhatsApp: 123456789</p>
   </section>
 
-  <!-- UBICACION -->
-  <section id="ubicacion">
-    <h2>Ubicación</h2>
-
-    <iframe
-      src="https://www.google.com/maps?q=Buenos+Aires&output=embed"
-      width="100%"
-      height="300"
-      style="border:0;">
-    </iframe>
-
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <p>© 2026 Sublimación Medina</p>
   </footer>
