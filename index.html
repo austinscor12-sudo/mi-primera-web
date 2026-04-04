@@ -7,25 +7,43 @@
     body {
       margin: 0;
       font-family: Arial;
-      background-color: #0f172a;
+      background: #0f172a;
       color: white;
     }
 
-    header {
-      background-color: #1e293b;
-      padding: 20px;
-      text-align: center;
+    /* MENU */
+    nav {
+      background: #1e293b;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
     }
 
-    h1 {
-      margin: 0;
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
       color: #38bdf8;
     }
 
-    .container {
-      padding: 20px;
+    header {
+      text-align: center;
+      padding: 30px;
     }
 
+    h1 {
+      color: #38bdf8;
+    }
+
+    section {
+      padding: 30px;
+    }
+
+    /* PRODUCTOS */
     .productos {
       display: flex;
       gap: 20px;
@@ -34,75 +52,137 @@
     }
 
     .card {
-      background-color: #1e293b;
-      padding: 15px;
+      background: #1e293b;
       border-radius: 10px;
-      width: 200px;
+      width: 220px;
       text-align: center;
+      overflow: hidden;
+      transition: 0.3s;
     }
 
-    .card h3 {
-      margin: 10px 0;
+    .card:hover {
+      transform: scale(1.05);
     }
 
-    .contacto {
-      text-align: center;
-      margin-top: 40px;
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
     }
 
-    .boton {
-      background-color: #38bdf8;
-      padding: 10px 20px;
+    .sin-stock {
+      filter: grayscale(100%);
+      opacity: 0.5;
+    }
+
+    .precio {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px;
+      background: #38bdf8;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
-  </style>
 
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e293b;
+    }
+
+  </style>
 </head>
+
 <body>
 
+  <!-- MENU -->
+  <nav>
+    <a href="#productos">Productos</a>
+    <a href="#precios">Precios</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#ubicacion">Ubicación</a>
+  </nav>
+
+  <!-- HEADER -->
   <header>
     <h1>Sublimación Medina</h1>
-    <p>REMERAS, TAZAS, LLAVEROS Y MAS</p>
+    <p>Remeras, tazas, llaveros y más</p>
   </header>
 
-  <div class="container">
-
-    <h2 style="text-align:center;">Nuestros productos</h2>
+  <!-- PRODUCTOS -->
+  <section id="productos">
+    <h2 style="text-align:center;">Productos</h2>
 
     <div class="productos">
 
       <div class="card">
-        <h3>REMERAS</h3>
-        <p>DISEÑOS PERSONZALIZADOS</p>
+        <img src="https://via.placeholder.com/200">
+        <h3>Remeras</h3>
+        <p>Diseños personalizados</p>
+        <p class="precio">$5000</p>
+        <button onclick="whatsapp()">Consultar</button>
+      </div>
+
+      <div class="card sin-stock">
+        <img src="https://via.placeholder.com/200">
+        <h3>Tazas</h3>
+        <p>Sin stock</p>
+        <p class="precio">$3000</p>
       </div>
 
       <div class="card">
-        <h3>TAZAS</h3>
-        <p>IDEALES PARA REGALO</p>
-      </div>
-
-      <div class="card">
-        <h3>LLAVEROS</h3>
-        <p>CON FOTOS O NOMBRES</p>
+        <img src="https://via.placeholder.com/200">
+        <h3>Llaveros</h3>
+        <p>Con fotos o nombres</p>
+        <p class="precio">$2000</p>
+        <button onclick="whatsapp()">Consultar</button>
       </div>
 
     </div>
+  </section>
 
-    <div class="contacto">
-      <h2>Contacto</h2>
-      <p>WhatsApp: 123456789</p>
-      <p>Instagram: @tuemprendimiento</p>
+  <!-- PRECIOS -->
+  <section id="precios">
+    <h2>Lista de precios</h2>
+    <p>Remeras: $5000</p>
+    <p>Tazas: $3000</p>
+    <p>Llaveros: $2000</p>
+  </section>
 
-      <button class="boton" onclick="mensaje()">Consultar</button>
-    </div>
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>Instagram: @sublimacionmedina</p>
+    <p>WhatsApp: 123456789</p>
+  </section>
 
-  </div>
+  <!-- UBICACION -->
+  <section id="ubicacion">
+    <h2>Ubicación</h2>
+
+    <iframe
+      src="https://www.google.com/maps?q=Buenos+Aires&output=embed"
+      width="100%"
+      height="300"
+      style="border:0;">
+    </iframe>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Sublimación Medina</p>
+  </footer>
 
   <script>
-    function mensaje() {
-      alert("Escribinos por WhatsApp 😊");
+    function whatsapp() {
+      window.open("https://wa.me/123456789");
     }
   </script>
 
