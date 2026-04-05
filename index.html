@@ -8,71 +8,159 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#0f172a;color:white;}
+body{background:#0f172a;color:white;overflow-x:hidden;}
 
+/* NAV */
 nav{
+position:fixed;width:100%;padding:20px 40px;
 display:flex;justify-content:space-between;align-items:center;
-padding:20px 40px;position:fixed;width:100%;z-index:1000;
 background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
+z-index:1000;
 }
 
-.logo{color:#22c55e;font-weight:600;}
-.menu{display:flex;gap:20px;align-items:center;}
-.menu a{color:white;text-decoration:none;cursor:pointer;}
+.logo{color:#22c55e;font-size:22px;font-weight:600;}
 
-.cart{
-background:#22c55e;padding:5px 10px;border-radius:20px;
+.menu-btn{
+font-size:30px;cursor:pointer;
 }
 
+/* MENU FULL */
+.overlay{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:#020617;
+display:flex;flex-direction:column;
+justify-content:center;align-items:center;
+gap:40px;
+transform:translateY(-100%);
+transition:0.5s;
+z-index:2000;
+}
+
+.overlay.active{transform:translateY(0);}
+
+.overlay a{
+font-size:30px;color:white;text-decoration:none;
+transition:0.3s;
+}
+
+.overlay a:hover{
+color:#22c55e;transform:scale(1.2);
+}
+
+/* HERO */
 .hero{
-height:100vh;display:flex;justify-content:center;align-items:center;
-text-align:center;background:linear-gradient(135deg,#22c55e,#3b82f6);
+height:100vh;
+display:flex;justify-content:center;align-items:center;
+text-align:center;
+background:linear-gradient(135deg,#22c55e,#3b82f6);
+}
+
+.hero h1{
+font-size:50px;
+animation:fadeUp 1s ease;
 }
 
 .btn{
-background:#22c55e;padding:10px 20px;border-radius:25px;
-cursor:pointer;border:none;color:white;
+background:#22c55e;
+padding:12px 25px;
+border-radius:30px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+display:inline-block;
+margin-top:20px;
+}
+
+.btn:hover{
+transform:scale(1.1);
+background:#16a34a;
 }
 
 /* PRODUCTOS */
 .products{
-display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;padding:80px 40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:80px 40px;
 }
 
-.product{
-background:#1e293b;padding:20px;border-radius:15px;text-align:center;
+.card{
+background:#1e293b;
+padding:30px;
+border-radius:15px;
+text-align:center;
+transition:0.2s;
+transform-style:preserve-3d;
 }
 
-.product button{margin-top:10px;}
-
-/* MODAL */
-.modal{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.8);display:none;
-justify-content:center;align-items:center;
+/* IA */
+.ai-btn{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#22c55e;
+padding:15px;
+border-radius:50%;
+cursor:pointer;
 }
 
-.modal.active{display:flex;}
-
-.modal-box{
-background:#1e293b;padding:30px;border-radius:10px;width:300px;
+.ai-chat{
+position:fixed;
+bottom:80px;
+left:20px;
+width:260px;
+height:320px;
+background:#1e293b;
+display:none;
+flex-direction:column;
+padding:10px;
+border-radius:10px;
 }
 
-.modal input{
-width:100%;padding:10px;margin:10px 0;border:none;border-radius:5px;
+.ai-chat.active{display:flex;}
+
+#chatBox{
+flex:1;
+overflow:auto;
+font-size:14px;
+margin-bottom:5px;
+}
+
+input{
+padding:10px;
+border:none;
+border-radius:5px;
 }
 
 /* CARRITO */
+.cart-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#22c55e;
+padding:15px;
+border-radius:50%;
+cursor:pointer;
+}
+
 .cart-panel{
-position:fixed;right:-100%;top:0;width:300px;height:100%;
-background:#020617;padding:20px;transition:0.4s;
+position:fixed;
+right:-100%;
+top:0;
+width:300px;
+height:100%;
+background:#020617;
+padding:20px;
+transition:0.4s;
 }
 
 .cart-panel.active{right:0;}
 
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
 </style>
 </head>
 
@@ -80,142 +168,125 @@ background:#020617;padding:20px;transition:0.4s;
 
 <nav>
 <div class="logo">SublimArte</div>
-
-<div class="menu">
-<a onclick="openLogin()">Login</a>
-<a onclick="openRegister()">Registro</a>
-<a onclick="toggleCart()">Carrito <span id="cartCount" class="cart">0</span></a>
-</div>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
 </nav>
 
+<!-- MENU -->
+<div id="menuOverlay" class="overlay">
+<a href="#">Inicio</a>
+<a href="#productos">Productos</a>
+<a href="#" onclick="toggleCart()">Carrito</a>
+</div>
+
+<!-- HERO -->
 <div class="hero">
 <div>
-<h1>Tu diseño, tu estilo</h1>
-<p>Comprá productos personalizados</p>
-<button class="btn">Ver productos</button>
+<h1>Diseños únicos</h1>
+<p>Productos personalizados a tu estilo</p>
+<a href="#productos" class="btn">Ver productos</a>
 </div>
 </div>
 
-<section class="products" id="products"></section>
+<!-- PRODUCTOS -->
+<section class="products" id="productos"></section>
 
-<!-- LOGIN -->
-<div class="modal" id="loginModal">
-<div class="modal-box">
-<h3>Login</h3>
-<input id="loginUser" placeholder="Usuario">
-<input id="loginPass" type="password" placeholder="Contraseña">
-<button class="btn" onclick="login()">Entrar</button>
-</div>
-</div>
+<!-- IA -->
+<div class="ai-btn" onclick="toggleAI()">🤖</div>
 
-<!-- REGISTER -->
-<div class="modal" id="registerModal">
-<div class="modal-box">
-<h3>Registro</h3>
-<input id="regUser" placeholder="Usuario">
-<input id="regPass" type="password" placeholder="Contraseña">
-<button class="btn" onclick="register()">Crear cuenta</button>
-</div>
+<div class="ai-chat" id="aiChat">
+<div id="chatBox"></div>
+<input id="userInput" placeholder="Preguntá algo...">
 </div>
 
 <!-- CARRITO -->
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
+
 <div class="cart-panel" id="cartPanel">
 <h3>Carrito</h3>
 <div id="cartItems"></div>
-<br>
-<button class="btn" onclick="checkout()">Comprar</button>
 </div>
 
 <script>
 
+// MENU
+function toggleMenu(){
+document.getElementById("menuOverlay").classList.toggle("active");
+}
+
+// IA
+function toggleAI(){
+document.getElementById("aiChat").classList.toggle("active");
+}
+
+const respuestas={
+"precio":"Desde $3000",
+"envio":"Envíos a todo el país",
+"productos":"Tazas, remeras, gorras y más"
+};
+
+userInput.addEventListener("keypress",function(e){
+if(e.key==="Enter"){
+let texto=this.value.toLowerCase();
+let resp=respuestas[texto]||"Escribinos por WhatsApp 😉";
+
+chatBox.innerHTML+=`<p><b>Vos:</b> ${texto}</p>`;
+chatBox.innerHTML+=`<p><b>IA:</b> ${resp}</p>`;
+this.value="";
+}
+});
+
 // PRODUCTOS
-const productos = [
-{name:"Taza personalizada", precio:3000},
-{name:"Remera sublimada", precio:6000},
-{name:"Gorra", precio:4000},
-{name:"Almohadón", precio:5000}
+const productos=[
+{name:"Taza personalizada",precio:3000},
+{name:"Remera sublimada",precio:6000},
+{name:"Gorra",precio:4000},
+{name:"Almohadón",precio:5000}
 ];
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart=[];
 
-// RENDER PRODUCTOS
-const container = document.getElementById("products");
+const cont=document.getElementById("productos");
 
 productos.forEach((p,i)=>{
-container.innerHTML += `
-<div class="product">
+cont.innerHTML+=`
+<div class="card">
 <h3>${p.name}</h3>
 <p>$${p.precio}</p>
 <button onclick="addToCart(${i})" class="btn">Agregar</button>
 </div>`;
 });
 
-// AGREGAR AL CARRITO
+// CARRITO
 function addToCart(i){
 cart.push(productos[i]);
-localStorage.setItem("cart", JSON.stringify(cart));
-updateCart();
+renderCart();
 }
 
-// ACTUALIZAR CARRITO
-function updateCart(){
-document.getElementById("cartCount").innerText = cart.length;
-
-let items = "";
+function renderCart(){
+let html="";
 cart.forEach(p=>{
-items += `<p>${p.name} - $${p.precio}</p>`;
+html+=`<p>${p.name} - $${p.precio}</p>`;
 });
-document.getElementById("cartItems").innerHTML = items;
+cartItems.innerHTML=html;
 }
 
-updateCart();
-
-// TOGGLE CARRITO
 function toggleCart(){
 document.getElementById("cartPanel").classList.toggle("active");
 }
 
-// LOGIN / REGISTER
-function openLogin(){
-document.getElementById("loginModal").classList.add("active");
-}
-function openRegister(){
-document.getElementById("registerModal").classList.add("active");
-}
+// EFECTO 3D
+document.addEventListener("mousemove",(e)=>{
+document.querySelectorAll(".card").forEach(card=>{
+let rect=card.getBoundingClientRect();
+let x=e.clientX-rect.left;
+let y=e.clientY-rect.top;
 
-function register(){
-let u = regUser.value;
-let p = regPass.value;
-localStorage.setItem("user", u);
-localStorage.setItem("pass", p);
-alert("Registrado");
-}
+let rx=(y/rect.height-0.5)*-10;
+let ry=(x/rect.width-0.5)*10;
 
-function login(){
-let u = loginUser.value;
-let p = loginPass.value;
-
-if(u === localStorage.getItem("user") && p === localStorage.getItem("pass")){
-alert("Bienvenido " + u);
-}else{
-alert("Datos incorrectos");
-}
-}
-
-// CHECKOUT
-function checkout(){
-alert("Compra realizada (demo)");
-cart = [];
-localStorage.removeItem("cart");
-updateCart();
-}
-
-// CERRAR MODALES
-window.onclick = function(e){
-document.querySelectorAll(".modal").forEach(m=>{
-if(e.target === m) m.classList.remove("active");
+card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
 });
-}
+});
 
 </script>
 
