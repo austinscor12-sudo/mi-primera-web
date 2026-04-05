@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova - Soluciones Digitales Premium</title>
+    <title>TechNova Pro - Tienda IA 3D</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -19,22 +20,23 @@
             line-height: 1.6;
             color: #ffffff;
             overflow-x: hidden;
+            background: #0a0a15;
         }
 
-        /* Navegación */
+        /* Navegación Principal */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 15, 25, 0.95);
+            background: rgba(10, 10, 21, 0.95);
             backdrop-filter: blur(20px);
-            z-index: 1000;
+            z-index: 10000;
             padding: 1rem 0;
             transition: all 0.3s ease;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -43,359 +45,430 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-link {
             color: #ffffff;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             position: relative;
             transition: all 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
+            cursor: pointer;
         }
 
         .nav-link:hover {
-            color: #667eea;
+            color: #00f5ff;
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
             cursor: pointer;
-            gap: 4px;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #ffffff;
-            transition: 0.3s;
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
         }
 
-        /* Hero Section */
+        /* Modal Base */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 20000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(20, 20, 40, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #00f5ff;
+        }
+
+        /* Login/Register Modal */
+        .auth-form {
+            text-align: center;
+        }
+
+        .auth-form h2 {
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00f5ff;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00f5ff;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.5);
+        }
+
+        .switch-auth {
+            color: #00f5ff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Carrito Modal */
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: right;
+            margin-top: 1rem;
+            color: #00f5ff;
+        }
+
+        /* IA Chat Modal */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, #00f5ff, #0099cc);
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .message.ai {
+            background: rgba(255,255,255,0.1);
+            margin-right: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            top: 100px;
+            left: 30px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(0,245,255,0.3);
+            color: #00f5ff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 15000;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .back-btn:hover {
+            background: rgba(0,245,255,0.2);
+            transform: scale(1.1);
+        }
+
+        /* Hero 3D */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #0f0f19 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        #three-canvas {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
-            opacity: 0.1;
+            width: 100%;
+            height: 100%;
             z-index: 1;
         }
 
         .hero-content {
-            max-width: 800px;
-            padding: 0 2rem;
             position: relative;
             z-index: 2;
-            animation: fadeInUp 1s ease;
+            animation: fadeInUp 1.5s ease;
+            max-width: 900px;
+            padding: 0 2rem;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #667eea 50%, #764ba2 100%);
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-        }
-
-        /* Secciones */
-        .section {
-            padding: 100px 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 4rem;
-            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Servicios */
-        .services-grid {
+        /* Productos */
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
-        .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2.5rem;
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2rem;
             text-align: center;
             transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0,245,255,0.2);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
-        .service-card::before {
+        .product-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(0,245,255,0.1), transparent);
+            transition: left 0.6s;
         }
 
-        .service-card:hover::before {
+        .product-card:hover::before {
             left: 100%;
         }
 
-        .service-card:hover {
-            transform: translateY(-15px);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        .product-card:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         }
 
-        .service-icon {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Estadísticas */
-        .stats {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 80px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-        }
-
-        /* Testimonios */
-        .testimonial {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+        .product-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #00f5ff, #ff00ff);
             border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .testimonial:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .stars {
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        /* Contacto */
-        .contact {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 30px;
-            padding: 4rem;
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 70px;
-            height: 70px;
-            background: #25D366;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            animation: pulse 2s infinite;
+            font-size: 3rem;
+            transition: transform 0.3s ease;
         }
 
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
+        .product-card:hover .product-image {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #00f5ff;
+            margin: 1rem 0;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,245,255,0.5);
         }
 
         /* Animaciones */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        /* Scroll Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .floating {
+            animation: float 3s ease-in-out infinite;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
             .nav-menu {
                 position: fixed;
                 left: -100%;
-                top: 70px;
+                top: 80px;
                 flex-direction: column;
-                background: rgba(15, 15, 25, 0.98);
+                background: rgba(10,10,21,0.98);
                 width: 100%;
                 text-align: center;
+                padding: 2rem;
                 transition: 0.3s;
-                padding: 2rem 0;
             }
 
             .nav-menu.active {
                 left: 0;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 60px 1rem;
+            .hamburger span {
+                width: 30px;
+                height: 4px;
+                background: #00f5ff;
+                transition: 0.3s;
             }
         }
 
-        /* Footer */
-        .footer {
-            background: #0f0f19;
-            padding: 3rem 0 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
+        .section {
+            padding: 120px 2rem 80px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
@@ -403,15 +476,18 @@
     <!-- Navegación -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">TechNova</div>
+            <div class="logo">TechNova <span style="font-size: 0.8em;">PRO</span></div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Inicio</a></li>
-                <li><a href="#services" class="nav-link">Servicios</a></li>
-                <li><a href="#stats" class="nav-link">Resultados</a></li>
-                <li><a href="#testimonials" class="nav-link">Testimonios</a></li>
-                <li><a href="#contact" class="nav-link">Contacto</a></li>
+                <li><a class="nav-link" onclick="showSection('home')">🏠 Inicio</a></li>
+                <li><a class="nav-link" onclick="showSection('store')">🛒 Tienda</a></li>
+                <li><a class="nav-link" onclick="openAIChat()">🤖 IA Asistente</a></li>
+                <li><a class="nav-link" onclick="toggleLogin()">👤 Iniciar Sesión</a></li>
             </ul>
-            <div class="hamburger">
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -419,125 +495,56 @@
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
+    <!-- Botón Atrás -->
+    <div class="back-btn" onclick="goBack()" id="backBtn">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+
+    <!-- Hero 3D -->
+    <section id="home" class="hero" style="display: block;">
+        <canvas id="three-canvas"></canvas>
         <div class="hero-content">
-            <h1>Transformamos Ideas en Realidad Digital</h1>
-            <p>Desarrollo web profesional, diseño UI/UX premium y soluciones digitales que generan resultados reales para tu negocio.</p>
-            <a href="#services" class="cta-button">Ver Nuestros Servicios</a>
+            <h1>Tienda IA 3D <br> <span class="floating">Revolucionaria</span></h1>
+            <p>Descubre productos premium con inteligencia artificial, efectos 3D y carrito funcional completo. ¡Todo listo para vender!</p>
+            <button class="cta-button" onclick="showSection('store')" style="
+                background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+                color: #000;
+                padding: 1.5rem 3rem;
+                border: none;
+                border-radius: 50px;
+                font-size: 1.2rem;
+                font-weight: 800;
+                cursor: pointer;
+                margin-top: 2rem;
+                box-shadow: 0 20px 40px rgba(0,245,255,0.4);
+                transition: all 0.3s ease;
+            ">🚀 Comprar Ahora</button>
         </div>
     </section>
 
-    <!-- Servicios -->
-    <section id="services" class="section reveal">
-        <h2 class="section-title">Nuestros Servicios Premium</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>Desarrollo Web</h3>
-                <p>Sitios web modernos, rápidos y optimizados. Todo responsive y preparado para convertir visitantes en clientes.</p>
+    <!-- Tienda -->
+    <section id="store" class="section" style="display: none;">
+        <h2 class="section-title">🛍️ Productos Premium</h2>
+        <div class="products-grid">
+            <div class="product-card" onclick="addToCart(1, 'Plan IA Pro', 199, '🚀 IA Avanzada + 3D', 'plan-ia-pro.jpg')">
+                <div class="product-image">🤖</div>
+                <h3>Plan IA Pro</h3>
+                <p>Inteligencia artificial completa + efectos 3D</p>
+                <div class="product-price">$199 <span style="font-size: 0.6em;">/año</span></div>
+                <button class="add-to-cart">Añadir al Carrito</button>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <h3>Diseño UI/UX</h3>
-                <p>Interfaces intuitivas y diseños que enamoran. Cada pixel cuenta para crear experiencias inolvidables.</p>
+            <div class="product-card" onclick="addToCart(2, 'Diseño 3D Premium', 299, 'Modelos 3D profesionales', 'diseno-3d.jpg')">
+                <div class="product-image">🎨</div>
+                <h3>Diseño 3D Premium</h3>
+                <p>Modelos 3D profesionales para tu negocio</p>
+                <div class="product-price">$299</div>
+                <button class="add-to-cart">Añadir al Carrito</button>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Apps Móviles</h3>
-                <p>Aplicaciones nativas e híbridas que funcionan perfecto en iOS y Android. Tu idea, en el bolsillo de tus clientes.</p>
+            <div class="product-card" onclick="addToCart(3, 'Web IA Completa', 499, 'Sitio web con IA integrada', 'web-ia.jpg')">
+                <div class="product-image">🌐</div>
+                <h3>Web IA Completa</h3>
+                <p>Sitio web completo con IA y efectos 3D</p>
+                <div class="product-price">$499</div>
+                <button class="add-to-cart">Añadir al Carrito</button>
             </div>
-        </div>
-    </section>
-
-    <!-- Estadísticas -->
-    <section id="stats" class="stats reveal">
-        <div class="section">
-            <div class="stats-grid">
-                <div>
-                    <span class="stat-number" data-target="150">0</span>
-                    <p>Proyectos Completados</p>
-                </div>
-                <div>
-                    <span class="stat-number" data-target="98">0</span>
-                    <p>% Satisfacción</p>
-                </div>
-                <div>
-                    <span class="stat-number" data-target="50">0</span>
-                    <p>Clientes Felices</p>
-                </div>
-                <div>
-                    <span class="stat-number" data-target="24">0</span>
-                    <p>Horas de Código/Día</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonios -->
-    <section id="testimonials" class="section reveal">
-        <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
-        <div class="testimonial">
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <p>"TechNova transformó completamente nuestro negocio online. El diseño es espectacular y las conversiones se dispararon."</p>
-            <h4>- María González, CEO Ecommerce</h4>
-        </div>
-        <div class="testimonial">
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <p>"Entrega puntual, código impecable y soporte excelente. 100% recomendado para cualquier proyecto digital."</p>
-            <h4>- Carlos Ramírez, Startup Founder</h4>
-        </div>
-    </section>
-
-    <!-- Contacto -->
-    <section id="contact" class="section">
-        <div class="contact reveal">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">¿Listo para Transformar tu Negocio?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Contáctanos hoy y hagamos realidad tu proyecto digital</p>
-            <a href="#home" class="cta-button" style="background: white; color: #667eea; font-weight: 600;">Empezar Proyecto</a>
-        </div>
-    </section>
-
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/1234567890?text=¡Hola!%20Quiero%20información%20sobre%20sus%20servicios" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 TechNova. Todos los derechos reservados. | Diseñado con ❤️ para convertir</p>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-           
+            <div class="product-card" onclick="addToCart(4, 'Ecommerce Pro', 799, 'Tienda completa con carrito
