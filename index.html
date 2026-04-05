@@ -4,6 +4,10 @@
   <title>Sublimación Medina</title>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial;
@@ -11,57 +15,80 @@
       color: white;
     }
 
+    /* NAV */
     nav {
-      background: #1e293b;
-      padding: 15px;
+      position: sticky;
+      top: 0;
+      background: rgba(30,41,59,0.9);
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: center;
       gap: 20px;
-      flex-wrap: wrap;
+      padding: 15px;
+      z-index: 1000;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      transition: 0.3s;
     }
 
     nav a:hover {
       color: #38bdf8;
+      transform: scale(1.1);
     }
 
     header {
       text-align: center;
-      padding: 40px;
+      padding: 60px 20px;
+      background: linear-gradient(45deg, #0f172a, #1e293b);
     }
 
     h1 {
+      font-size: 40px;
       color: #38bdf8;
     }
 
     section {
-      padding: 30px;
+      padding: 40px 20px;
+    }
+
+    /* BOTONES */
+    button {
+      background: #38bdf8;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
     }
 
     /* PRODUCTOS */
     .productos {
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 20px;
     }
 
     .card {
+      width: 230px;
       background: #1e293b;
-      border-radius: 10px;
-      width: 220px;
-      text-align: center;
+      border-radius: 15px;
       overflow: hidden;
       transition: 0.3s;
+      box-shadow: 0 0 10px black;
     }
 
     .card:hover {
-      transform: scale(1.05);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 30px black;
     }
 
     .card img {
@@ -77,16 +104,13 @@
 
     .sin-stock {
       filter: grayscale(100%);
-      opacity: 0.5;
+      opacity: 0.4;
     }
 
-    button {
-      margin: 10px;
-      padding: 10px;
-      background: #38bdf8;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    /* FILTROS */
+    .filtros {
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     /* GALERIA */
@@ -100,104 +124,131 @@
     .galeria img {
       width: 200px;
       border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.1);
     }
 
     footer {
+      background: #1e293b;
       text-align: center;
       padding: 20px;
-      background: #1e293b;
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- MENU -->
-  <nav>
-    <a href="#productos">Productos</a>
-    <a href="#como">Cómo pedir</a>
-    <a href="#galeria">Galería</a>
-    <a href="#sobre">Sobre nosotros</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
+<!-- NAV -->
+<nav>
+  <a href="#productos">Productos</a>
+  <a href="#galeria">Galería</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#contacto">Contacto</a>
+</nav>
 
-  <!-- HEADER -->
-  <header>
-    <h1>Sublimación Medina</h1>
-    <p>Diseños personalizados para cada ocasión</p>
-  </header>
+<!-- HEADER -->
+<header>
+  <h1>Sublimación Medina</h1>
+  <p>Diseños personalizados únicos</p>
+  <button onclick="scrollToProductos()">Ver productos</button>
+</header>
 
-  <!-- PRODUCTOS -->
-  <section id="productos">
-    <h2>Catálogo</h2>
+<!-- PRODUCTOS -->
+<section id="productos">
 
-    <div class="productos">
+  <h2 style="text-align:center;">Catálogo</h2>
 
-      <div class="card">
-        <img src="https://via.placeholder.com/200">
-        <h3>Remeras</h3>
-        <p class="precio">$5000</p>
-        <button onclick="whatsapp()">Consultar</button>
-      </div>
+  <div class="filtros">
+    <button onclick="filtrar('todos')">Todos</button>
+    <button onclick="filtrar('remeras')">Remeras</button>
+    <button onclick="filtrar('tazas')">Tazas</button>
+  </div>
 
-      <div class="card">
-        <img src="https://via.placeholder.com/200">
-        <h3>Tazas</h3>
-        <p class="precio">$3000</p>
-        <button onclick="whatsapp()">Consultar</button>
-      </div>
+  <div class="productos" id="contenedor">
 
-      <div class="card sin-stock">
-        <img src="https://via.placeholder.com/200">
-        <h3>Llaveros</h3>
-        <p>Sin stock</p>
-      </div>
-
+    <div class="card remeras">
+      <img src="https://via.placeholder.com/200">
+      <h3>Remeras</h3>
+      <p class="precio">$5000</p>
+      <button onclick="comprar('Remera')">Comprar</button>
     </div>
-  </section>
 
-  <!-- COMO PEDIR -->
-  <section id="como">
-    <h2>¿Cómo pedir?</h2>
-    <p>1. Elegí el producto</p>
-    <p>2. Mandanos tu diseño o idea</p>
-    <p>3. Confirmamos el pedido</p>
-    <p>4. Entrega o envío</p>
-  </section>
-
-  <!-- GALERIA -->
-  <section id="galeria">
-    <h2>Galería</h2>
-
-    <div class="galeria">
+    <div class="card tazas">
       <img src="https://via.placeholder.com/200">
-      <img src="https://via.placeholder.com/200">
-      <img src="https://via.placeholder.com/200">
+      <h3>Tazas</h3>
+      <p class="precio">$3000</p>
+      <button onclick="comprar('Taza')">Comprar</button>
     </div>
-  </section>
 
-  <!-- SOBRE NOSOTROS -->
-  <section id="sobre">
-    <h2>Sobre nosotros</h2>
-    <p>Somos un emprendimiento familiar dedicado a la sublimación de productos personalizados.</p>
-  </section>
+    <div class="card remeras sin-stock">
+      <img src="https://via.placeholder.com/200">
+      <h3>Remera Negra</h3>
+      <p>Sin stock</p>
+    </div>
 
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>Instagram: @sublimacionmedina</p>
-    <p>WhatsApp: 123456789</p>
-  </section>
+  </div>
 
-  <footer>
-    <p>© 2026 Sublimación Medina</p>
-  </footer>
+</section>
 
-  <script>
-    function whatsapp() {
-      window.open("https://wa.me/123456789");
+<!-- GALERIA -->
+<section id="galeria">
+  <h2>Galería</h2>
+
+  <div class="galeria">
+    <img src="https://via.placeholder.com/200">
+    <img src="https://via.placeholder.com/200">
+    <img src="https://via.placeholder.com/200">
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <h2>Sobre nosotros</h2>
+  <p>Emprendimiento familiar dedicado a la sublimación de productos personalizados.</p>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p>Instagram: @sublimacionmedina</p>
+  <p>WhatsApp: 123456789</p>
+</section>
+
+<footer>
+  <p>© 2026 Sublimación Medina</p>
+</footer>
+
+<script>
+
+function scrollToProductos() {
+  document.getElementById("productos").scrollIntoView();
+}
+
+function comprar(producto) {
+  window.open(`https://wa.me/123456789?text=Hola quiero ${producto}`);
+}
+
+function filtrar(tipo) {
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    if (tipo === "todos") {
+      card.style.display = "block";
+    } else {
+      if (card.classList.contains(tipo)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
     }
-  </script>
+  });
+}
+
+</script>
 
 </body>
 </html>
