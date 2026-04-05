@@ -1,548 +1,201 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmacia del Barrio | ⭐ 5.0 Corrientes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111;
-            --accent: #00d4aa;
-            --accent-dark: #00b894;
-            --gold: #f39c12;
-            --white: #fff;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 4px;
-        }
-
-        /* WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            right: 30px;
-            bottom: 30px;
-            width: 70px;
-            height: 70px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,212,170,0.4);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            animation: float 3s ease-in-out infinite;
-            text-decoration: none;
-            color: var(--white);
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,212,170,0.6);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Hero */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background: radial-gradient(ellipse at center, rgba(0,212,170,0.1) 0%, transparent 70%);
-        }
-
-        .hero-content {
-            max-width: 1000px;
-            padding: 0 2rem;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 12px 24px;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            font-weight: 600;
-            font-size: 1.1rem;
-            animation: slideInDown 1s ease;
-        }
-
-        .hero-stars {
-            color: var(--gold);
-            font-size: 1.3rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(4rem, 10vw, 7rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--white) 0%, #f0f0f0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.3rem, 4vw, 2rem);
-            opacity: 0.9;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            animation: fadeInUp 1.2s ease 0.3s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1.2s ease 0.6s both;
-        }
-
-        .btn {
-            padding: 16px 32px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-            box-shadow: 0 15px 35px rgba(0,212,170,0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 25px 50px rgba(0,212,170,0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border-color: var(--accent);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        /* Sections */
-        .section {
-            padding: 120px 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--white) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.3rem;
-            opacity: 0.8;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-        }
-
-        /* About */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--white);
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .schedule {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 2.5rem;
-            border-radius: 20px;
-        }
-
-        .schedule-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--accent);
-        }
-
-        .schedule-time {
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-align: center;
-            margin-top: 1rem;
-            color: var(--white);
-        }
-
-        /* Testimonials */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 2.5rem;
-            border-radius: 20px;
-            position: relative;
-            transition: all 0.4s ease;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            left: 25px;
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--accent);
-            opacity: 0.3;
-            line-height: 1;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 30px 60px rgba(0,212,170,0.2);
-        }
-
-        .testimonial-stars {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--accent);
-            font-size: 1rem;
-        }
-
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--gold));
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--accent);
-            box-shadow: 0 30px 60px rgba(0,212,170,0.3);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            color: var(--white);
-            box-shadow: 0 10px 30px rgba(0,212,170,0.4);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(10deg);
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
-            height: 280px;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 30px 60px rgba(0,212,170,0.4);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, rgba(0,212,170,0.9), rgba(0,184,148,0.9));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        /* Location */
-        .location-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .map-container {
-            height: 450px;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-        }
-
-        .contact-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: 3rem;
-            border-radius: 25px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: rgba(0,212,170,0.1);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(0,212,170,0.2);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            width: 55px;
-            height: 55px;
-            background: var(--accent);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: var(--white);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--bg-secondary);
-            padding: 3rem 0 1.5rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            opacity: 0.7;
-            font-size: 0.95rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-buttons, .about-grid, .location-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section {
-                padding: 80px 0;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SublimArte - Sublimación Profesional</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+/* NAV */
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 50px;
+    position:fixed;
+    width:100%;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+}
+
+nav h2{
+    color:#22c55e;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(135deg,#22c55e,#3b82f6);
+    animation:fadeIn 2s;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.hero p{
+    margin:20px 0;
+    font-size:18px;
+}
+
+.btn{
+    background:#22c55e;
+    padding:12px 25px;
+    border-radius:30px;
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#16a34a;
+    transform:scale(1.1);
+}
+
+/* SECCIONES */
+section{
+    padding:80px 50px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+/* SERVICIOS */
+.services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+/* GALERIA */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+/* CONTACTO */
+.contact{
+    text-align:center;
+}
+
+/* WHATSAPP */
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    padding:15px;
+    border-radius:50%;
+    font-size:25px;
+    text-decoration:none;
+    color:white;
+}
+
+/* ANIMACION */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+</style>
 </head>
+
 <body>
-    <!-- WhatsApp -->
-    <a href="https://wa.me/543794456340?text=¡Hola!%20Quiero%20consultar%20sobre%20Farmacia%20del%20
+
+<nav>
+    <h2>SublimArte</h2>
+    <div>
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <div>
+        <h1>Productos Personalizados</h1>
+        <p>Tazas, remeras, gorras, almohadones y mucho más</p>
+        <a href="https://wa.me/549XXXXXXXXXX" class="btn">Pedir por WhatsApp</a>
+    </div>
+</div>
+
+<section id="servicios">
+    <h2>Nuestros Productos</h2>
+    <div class="services">
+        <div class="card">Tazas personalizadas</div>
+        <div class="card">Remeras sublimadas</div>
+        <div class="card">Gorras</div>
+        <div class="card">Almohadones</div>
+        <div class="card">Llaveros</div>
+        <div class="card">Botellas térmicas</div>
+    </div>
+</section>
+
+<section id="galeria">
+    <h2>Trabajos</h2>
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1606813909024-1f6b7c6aefc7">
+        <img src="https://images.unsplash.com/photo-1585386959984-a41552231658">
+        <img src="https://images.unsplash.com/photo-1593032465175-481ac7f401c0">
+        <img src="https://images.unsplash.com/photo-1616628182504-6c9e7e7b6f77">
+    </div>
+</section>
+
+<section id="contacto" class="contact">
+    <h2>Contacto</h2>
+    <p>Estamos en tu ciudad, hacemos envíos y trabajamos por pedido.</p>
+    <br>
+    <a href="https://wa.me/549XXXXXXXXXX" class="btn">Escribinos</a>
+</section>
+
+<a href="https://wa.me/549XXXXXXXXXX" class="whatsapp">💬</a>
+
+</body>
+</html>
