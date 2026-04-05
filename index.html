@@ -9,72 +9,85 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#0f172a;color:white;overflow-x:hidden;}
+body{
+background:linear-gradient(135deg,#020617,#0f172a);
+color:white;
+}
 
 /* NAV */
 nav{
-position:fixed;width:100%;padding:20px 40px;
-display:flex;justify-content:space-between;align-items:center;
-background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
+position:fixed;width:100%;
+display:flex;justify-content:space-between;
+padding:20px;
 z-index:1000;
 }
 
-.logo{color:#22c55e;font-size:22px;font-weight:600;}
+.logo{color:#22c55e;font-size:22px;}
 
-.menu-btn{
-font-size:30px;cursor:pointer;
-}
+.menu-btn{font-size:28px;cursor:pointer;}
 
-/* MENU FULL */
+/* MENU */
 .overlay{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:#020617;
-display:flex;flex-direction:column;
-justify-content:center;align-items:center;
-gap:40px;
-transform:translateY(-100%);
-transition:0.5s;
-z-index:2000;
+position:fixed;
+top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.95);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:30px;
+opacity:0;
+pointer-events:none;
+transition:0.4s;
 }
 
-.overlay.active{transform:translateY(0);}
+.overlay.active{
+opacity:1;
+pointer-events:all;
+}
 
 .overlay a{
-font-size:30px;color:white;text-decoration:none;
-transition:0.3s;
+font-size:28px;
+color:white;
+text-decoration:none;
 }
 
-.overlay a:hover{
-color:#22c55e;transform:scale(1.2);
+.close-btn{
+position:absolute;
+top:20px;
+right:20px;
+font-size:30px;
+cursor:pointer;
 }
 
 /* HERO */
 .hero{
 height:100vh;
-display:flex;justify-content:center;align-items:center;
+display:flex;
+justify-content:center;
+align-items:center;
 text-align:center;
 background:linear-gradient(135deg,#22c55e,#3b82f6);
 }
 
 .hero h1{
 font-size:50px;
-animation:fadeUp 1s ease;
 }
 
 .btn{
 background:#22c55e;
 padding:12px 25px;
 border-radius:30px;
-text-decoration:none;
+border:none;
+cursor:pointer;
 color:white;
-transition:0.3s;
-display:inline-block;
 margin-top:20px;
+transition:0.3s;
 }
 
 .btn:hover{
 transform:scale(1.1);
-background:#16a34a;
+box-shadow:0 0 20px #22c55e;
 }
 
 /* PRODUCTOS */
@@ -82,16 +95,20 @@ background:#16a34a;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
-padding:80px 40px;
+padding:60px 20px;
 }
 
 .card{
 background:#1e293b;
-padding:30px;
+padding:25px;
 border-radius:15px;
 text-align:center;
-transition:0.2s;
-transform-style:preserve-3d;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 20px rgba(34,197,94,0.5);
 }
 
 /* IA */
@@ -124,7 +141,6 @@ border-radius:10px;
 flex:1;
 overflow:auto;
 font-size:14px;
-margin-bottom:5px;
 }
 
 input{
@@ -138,7 +154,7 @@ border-radius:5px;
 position:fixed;
 bottom:20px;
 right:20px;
-background:#22c55e;
+background:#3b82f6;
 padding:15px;
 border-radius:50%;
 cursor:pointer;
@@ -157,10 +173,6 @@ transition:0.4s;
 
 .cart-panel.active{right:0;}
 
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(30px);}
-to{opacity:1;transform:translateY(0);}
-}
 </style>
 </head>
 
@@ -168,27 +180,27 @@ to{opacity:1;transform:translateY(0);}
 
 <nav>
 <div class="logo">SublimArte</div>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="menu-btn" onclick="openMenu()">☰</div>
 </nav>
 
 <!-- MENU -->
-<div id="menuOverlay" class="overlay">
+<div id="menu" class="overlay" onclick="closeMenu(event)">
+<div class="close-btn" onclick="closeMenu()">✕</div>
 <a href="#">Inicio</a>
 <a href="#productos">Productos</a>
-<a href="#" onclick="toggleCart()">Carrito</a>
+<a onclick="toggleCart()">Carrito</a>
 </div>
 
 <!-- HERO -->
 <div class="hero">
 <div>
-<h1>Diseños únicos</h1>
-<p>Productos personalizados a tu estilo</p>
-<a href="#productos" class="btn">Ver productos</a>
+<h1>Diseños que destacan</h1>
+<p>Personalizá lo que quieras</p>
+<button class="btn">Ver productos</button>
 </div>
 </div>
 
-<!-- PRODUCTOS -->
-<section class="products" id="productos"></section>
+<section id="productos" class="products"></section>
 
 <!-- IA -->
 <div class="ai-btn" onclick="toggleAI()">🤖</div>
@@ -209,27 +221,28 @@ to{opacity:1;transform:translateY(0);}
 <script>
 
 // MENU
-function toggleMenu(){
-document.getElementById("menuOverlay").classList.toggle("active");
+function openMenu(){
+menu.classList.add("active");
+}
+function closeMenu(e){
+if(!e || e.target.id==="menu") menu.classList.remove("active");
 }
 
-// IA
-function toggleAI(){
-document.getElementById("aiChat").classList.toggle("active");
-}
-
+// IA MEJORADA
 const respuestas={
-"precio":"Desde $3000",
-"envio":"Envíos a todo el país",
-"productos":"Tazas, remeras, gorras y más"
+"hola":"¡Hola! ¿Qué te gustaría comprar?",
+"precio":"Tenemos desde $3000",
+"envio":"Enviamos a todo el país 🚚",
+"productos":"Tazas, remeras, gorras y más",
+"default":"Podés preguntarme por precios, envíos o productos 😉"
 };
 
 userInput.addEventListener("keypress",function(e){
 if(e.key==="Enter"){
-let texto=this.value.toLowerCase();
-let resp=respuestas[texto]||"Escribinos por WhatsApp 😉";
+let txt=this.value.toLowerCase();
+let resp=respuestas[txt]||respuestas["default"];
 
-chatBox.innerHTML+=`<p><b>Vos:</b> ${texto}</p>`;
+chatBox.innerHTML+=`<p><b>Vos:</b> ${txt}</p>`;
 chatBox.innerHTML+=`<p><b>IA:</b> ${resp}</p>`;
 this.value="";
 }
@@ -243,50 +256,35 @@ const productos=[
 {name:"Almohadón",precio:5000}
 ];
 
-let cart=[];
-
-const cont=document.getElementById("productos");
-
 productos.forEach((p,i)=>{
-cont.innerHTML+=`
+productosDiv.innerHTML+=`
 <div class="card">
 <h3>${p.name}</h3>
 <p>$${p.precio}</p>
-<button onclick="addToCart(${i})" class="btn">Agregar</button>
+<button class="btn" onclick="addToCart(${i})">Agregar</button>
 </div>`;
 });
 
 // CARRITO
+let cart=[];
+
 function addToCart(i){
 cart.push(productos[i]);
 renderCart();
 }
 
 function renderCart(){
-let html="";
-cart.forEach(p=>{
-html+=`<p>${p.name} - $${p.precio}</p>`;
-});
-cartItems.innerHTML=html;
+cartItems.innerHTML=cart.map(p=>`<p>${p.name} - $${p.precio}</p>`).join("");
 }
 
 function toggleCart(){
-document.getElementById("cartPanel").classList.toggle("active");
+cartPanel.classList.toggle("active");
 }
 
-// EFECTO 3D
-document.addEventListener("mousemove",(e)=>{
-document.querySelectorAll(".card").forEach(card=>{
-let rect=card.getBoundingClientRect();
-let x=e.clientX-rect.left;
-let y=e.clientY-rect.top;
-
-let rx=(y/rect.height-0.5)*-10;
-let ry=(x/rect.width-0.5)*10;
-
-card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
-});
-});
+// IA TOGGLE
+function toggleAI(){
+aiChat.classList.toggle("active");
+}
 
 </script>
 
