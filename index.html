@@ -229,7 +229,20 @@ function scrollToProductos() {
 }
 
 function comprar(producto) {
-  window.open(`https://wa.me/123456789?text=Hola quiero ${producto}`);
+  fetch("http://localhost:3000/pedido", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      producto: producto,
+      fecha: new Date().toLocaleString()
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("Pedido enviado correctamente 🚀");
+  });
 }
 
 function filtrar(tipo) {
