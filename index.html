@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNova Pro - Tienda IA 3D</title>
+    <title>TechNova Pro - Tienda IA 3D 🚀</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         * {
@@ -20,19 +20,20 @@
             line-height: 1.6;
             color: #ffffff;
             overflow-x: hidden;
-            background: #0a0a15;
+            background: linear-gradient(135deg, #0a0a15 0%, #1a0a2e 100%);
         }
 
-        /* Navegación Principal */
+        /* Navegación */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 21, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 21, 0.97);
+            backdrop-filter: blur(25px);
             z-index: 10000;
             padding: 1rem 0;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,245,255,0.1);
         }
 
         .nav-container {
@@ -45,17 +46,19 @@
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 50%, #00f5ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-link {
@@ -65,35 +68,92 @@
             position: relative;
             transition: all 0.3s ease;
             cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
         }
 
         .nav-link:hover {
             color: #00f5ff;
+            background: rgba(0,245,255,0.1);
         }
 
         .cart-icon {
             position: relative;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            background: rgba(0,245,255,0.2);
+            transform: scale(1.1);
         }
 
         .cart-count {
             position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff4757;
+            top: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, #ff4757, #ff3742);
             color: white;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             font-size: 0.8rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255,71,87,0.4);
         }
 
-        /* Modal Base */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 4px;
+            background: linear-gradient(135deg, #00f5ff, #ff00ff);
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Botón Atrás */
+        .back-btn {
+            position: fixed;
+            top: 110px;
+            left: 30px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0,245,255,0.4);
+            color: #00f5ff;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 15000;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            display: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(0,245,255,0.2);
+            transform: scale(1.15) rotate(-180deg);
+            border-color: #00f5ff;
+            box-shadow: 0 12px 35px rgba(0,245,255,0.4);
+        }
+
+        /* Modales */
         .modal {
             display: none;
             position: fixed;
@@ -101,9 +161,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.92);
             z-index: 20000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
 
         .modal-content {
@@ -111,146 +171,254 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(20, 20, 40, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
+            background: rgba(20, 20, 45, 0.98);
+            backdrop-filter: blur(25px);
+            border-radius: 30px;
             padding: 3rem;
-            max-width: 500px;
-            width: 90%;
+            max-width: 550px;
+            width: 92%;
             max-height: 90vh;
             overflow-y: auto;
-            border: 1px solid rgba(0, 245, 255, 0.3);
+            border: 2px solid rgba(0,245,255,0.3);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
 
         .close-modal {
             position: absolute;
             top: 1.5rem;
             right: 2rem;
-            font-size: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
             color: #00f5ff;
+            transition: all 0.3s ease;
         }
 
-        /* Login/Register Modal */
+        .close-modal:hover {
+            color: #ff00ff;
+            transform: rotate(90deg);
+        }
+
+        /* Formularios Auth */
         .auth-form {
             text-align: center;
         }
 
         .auth-form h2 {
             margin-bottom: 2rem;
+            font-size: 2.2rem;
             background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             text-align: left;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             color: #00f5ff;
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .form-group input {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid rgba(0, 245, 255, 0.3);
-            border-radius: 12px;
-            background: rgba(255,255,255,0.1);
+            padding: 1.2rem 1.5rem;
+            border: 2px solid rgba(0,245,255,0.3);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.08);
             color: white;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255,255,255,0.5);
         }
 
         .form-group input:focus {
             outline: none;
             border-color: #00f5ff;
-            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 0 25px rgba(0,245,255,0.3);
+            transform: scale(1.02);
         }
 
         .auth-btn {
             width: 100%;
-            padding: 1.2rem;
+            padding: 1.3rem;
             background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
             color: #000;
             border: none;
-            border-radius: 12px;
+            border-radius: 15px;
             font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 800;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 1rem;
+            transition: all 0.4s ease;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .auth-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,245,255,0.5);
         }
 
         .switch-auth {
             color: #00f5ff;
             cursor: pointer;
-            text-decoration: underline;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        /* Carrito Modal */
+        .switch-auth:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 10px rgba(255,0,255,0.5);
+        }
+
+        .user-info {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,245,255,0.3);
+        }
+
+        /* Carrito */
         .cart-items {
-            max-height: 400px;
+            max-height: 450px;
             overflow-y: auto;
+            margin-bottom: 2rem;
         }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0,245,255,0.2);
+            transition: all 0.3s ease;
         }
 
-        .cart-total {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-align: right;
-            margin-top: 1rem;
+        .cart-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+
+        .cart-item-info h4 {
+            margin-bottom: 0.5rem;
             color: #00f5ff;
         }
 
-        /* IA Chat Modal */
+        .cart-item-price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ff00ff;
+        }
+
+        .remove-item {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .remove-item:hover {
+            background: #ff3742;
+            transform: scale(1.05);
+        }
+
+        .cart-total {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: right;
+            margin: 2rem 0 1.5rem;
+            color: #00f5ff;
+            text-shadow: 0 0 20px rgba(0,245,255,0.5);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #000;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0,255,136,0.4);
+        }
+
+        /* Chat IA */
         .chat-container {
             display: flex;
             flex-direction: column;
-            height: 500px;
+            height: 550px;
         }
 
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 1rem;
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            margin-bottom: 1rem;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0,245,255,0.2);
         }
 
         .message {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 15px;
-            max-width: 80%;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            border-radius: 20px;
+            max-width: 85%;
+            animation: messageSlide 0.3s ease;
+        }
+
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .message.user {
             background: linear-gradient(135deg, #00f5ff, #0099cc);
             margin-left: auto;
             text-align: right;
+            border-bottom-right-radius: 5px;
         }
 
         .message.ai {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.12);
             margin-right: auto;
+            border-bottom-left-radius: 5px;
         }
 
         .chat-input {
@@ -260,31 +428,30 @@
 
         .chat-input input {
             flex: 1;
+            padding: 1.2rem 1.5rem;
         }
 
-        /* Back Button */
-        .back-btn {
-            position: fixed;
-            top: 100px;
-            left: 30px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(0,245,255,0.3);
-            color: #00f5ff;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .send-btn {
+            background: linear-gradient(135deg, #ff00ff, #cc00cc);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 15px;
             cursor: pointer;
-            z-index: 15000;
+            font-size: 1.1rem;
+            font-weight: 700;
             transition: all 0.3s ease;
-            display: none;
+            width: 60px;
         }
 
-        .back-btn:hover {
-            background: rgba(0,245,255,0.2);
+        .send-btn:hover {
             transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255,0,255,0.4);
+        }
+
+        .typing {
+            opacity: 0.7;
+            font-style: italic;
         }
 
         /* Hero 3D */
@@ -310,39 +477,89 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            animation: fadeInUp 1.5s ease;
-            max-width: 900px;
+            max-width: 1000px;
             padding: 0 2rem;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 50%, #00f5ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
+            color: #000;
+            padding: 1.5rem 3.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
             font-weight: 800;
-            margin-bottom: 1.5rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            box-shadow: 0 25px 50px rgba(0,245,255,0.4);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 35px 70px rgba(0,245,255,0.6);
+        }
+
+        /* Secciones */
+        .section {
+            padding: 140px 2rem 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 5rem;
             background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* Productos */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
             margin-top: 4rem;
         }
 
         .product-card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 2rem;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 2.5rem 2rem;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.5s ease;
             border: 1px solid rgba(0,245,255,0.2);
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            perspective: 1000px;
         }
 
         .product-card::before {
@@ -352,8 +569,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,245,255,0.1), transparent);
-            transition: left 0.6s;
+            background: linear-gradient(90deg, transparent, rgba(0,245,255,0.15), transparent);
+            transition: left 0.7s;
         }
 
         .product-card:hover::before {
@@ -361,190 +578,4 @@
         }
 
         .product-card:hover {
-            transform: translateY(-20px) rotateX(5deg);
-            background: rgba(255,255,255,0.1);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-
-        .product-image {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, #00f5ff, #ff00ff);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.1) rotate(10deg);
-        }
-
-        .product-price {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #00f5ff;
-            margin: 1rem 0;
-        }
-
-        .add-to-cart {
-            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
-            color: #000;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .add-to-cart:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,245,255,0.5);
-        }
-
-        /* Animaciones */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 80px;
-                flex-direction: column;
-                background: rgba(10,10,21,0.98);
-                width: 100%;
-                text-align: center;
-                padding: 2rem;
-                transition: 0.3s;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .hamburger {
-                display: flex;
-                flex-direction: column;
-                cursor: pointer;
-                gap: 5px;
-            }
-
-            .hamburger span {
-                width: 30px;
-                height: 4px;
-                background: #00f5ff;
-                transition: 0.3s;
-            }
-        }
-
-        .section {
-            padding: 120px 2rem 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 4rem;
-            background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navegación -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">TechNova <span style="font-size: 0.8em;">PRO</span></div>
-            <ul class="nav-menu">
-                <li><a class="nav-link" onclick="showSection('home')">🏠 Inicio</a></li>
-                <li><a class="nav-link" onclick="showSection('store')">🛒 Tienda</a></li>
-                <li><a class="nav-link" onclick="openAIChat()">🤖 IA Asistente</a></li>
-                <li><a class="nav-link" onclick="toggleLogin()">👤 Iniciar Sesión</a></li>
-            </ul>
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Botón Atrás -->
-    <div class="back-btn" onclick="goBack()" id="backBtn">
-        <i class="fas fa-arrow-left"></i>
-    </div>
-
-    <!-- Hero 3D -->
-    <section id="home" class="hero" style="display: block;">
-        <canvas id="three-canvas"></canvas>
-        <div class="hero-content">
-            <h1>Tienda IA 3D <br> <span class="floating">Revolucionaria</span></h1>
-            <p>Descubre productos premium con inteligencia artificial, efectos 3D y carrito funcional completo. ¡Todo listo para vender!</p>
-            <button class="cta-button" onclick="showSection('store')" style="
-                background: linear-gradient(135deg, #00f5ff 0%, #ff00ff 100%);
-                color: #000;
-                padding: 1.5rem 3rem;
-                border: none;
-                border-radius: 50px;
-                font-size: 1.2rem;
-                font-weight: 800;
-                cursor: pointer;
-                margin-top: 2rem;
-                box-shadow: 0 20px 40px rgba(0,245,255,0.4);
-                transition: all 0.3s ease;
-            ">🚀 Comprar Ahora</button>
-        </div>
-    </section>
-
-    <!-- Tienda -->
-    <section id="store" class="section" style="display: none;">
-        <h2 class="section-title">🛍️ Productos Premium</h2>
-        <div class="products-grid">
-            <div class="product-card" onclick="addToCart(1, 'Plan IA Pro', 199, '🚀 IA Avanzada + 3D', 'plan-ia-pro.jpg')">
-                <div class="product-image">🤖</div>
-                <h3>Plan IA Pro</h3>
-                <p>Inteligencia artificial completa + efectos 3D</p>
-                <div class="product-price">$199 <span style="font-size: 0.6em;">/año</span></div>
-                <button class="add-to-cart">Añadir al Carrito</button>
-            </div>
-            <div class="product-card" onclick="addToCart(2, 'Diseño 3D Premium', 299, 'Modelos 3D profesionales', 'diseno-3d.jpg')">
-                <div class="product-image">🎨</div>
-                <h3>Diseño 3D Premium</h3>
-                <p>Modelos 3D profesionales para tu negocio</p>
-                <div class="product-price">$299</div>
-                <button class="add-to-cart">Añadir al Carrito</button>
-            </div>
-            <div class="product-card" onclick="addToCart(3, 'Web IA Completa', 499, 'Sitio web con IA integrada', 'web-ia.jpg')">
-                <div class="product-image">🌐</div>
-                <h3>Web IA Completa</h3>
-                <p>Sitio web completo con IA y efectos 3D</p>
-                <div class="product-price">$499</div>
-                <button class="add-to-cart">Añadir al Carrito</button>
-            </div>
-            <div class="product-card" onclick="addToCart(4, 'Ecommerce Pro', 799, 'Tienda completa con carrito
+            transform: translateY(-25
