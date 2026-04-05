@@ -3,146 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SublimArte - Sublimación Profesional</title>
+<title>SublimArte</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
 
-body{
-    background:#0f172a;
-    color:white;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0f172a;color:white;}
 
-/* NAV */
 nav{
-    display:flex;
-    justify-content:space-between;
-    padding:20px 50px;
-    position:fixed;
-    width:100%;
-    background:rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
+display:flex;justify-content:space-between;align-items:center;
+padding:20px 40px;position:fixed;width:100%;z-index:1000;
+background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
 }
 
-nav h2{
-    color:#22c55e;
+.logo{color:#22c55e;font-weight:600;}
+.menu{display:flex;gap:20px;align-items:center;}
+.menu a{color:white;text-decoration:none;cursor:pointer;}
+
+.cart{
+background:#22c55e;padding:5px 10px;border-radius:20px;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-}
-
-/* HERO */
 .hero{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(135deg,#22c55e,#3b82f6);
-    animation:fadeIn 2s;
-}
-
-.hero h1{
-    font-size:50px;
-}
-
-.hero p{
-    margin:20px 0;
-    font-size:18px;
+height:100vh;display:flex;justify-content:center;align-items:center;
+text-align:center;background:linear-gradient(135deg,#22c55e,#3b82f6);
 }
 
 .btn{
-    background:#22c55e;
-    padding:12px 25px;
-    border-radius:30px;
-    text-decoration:none;
-    color:white;
-    transition:0.3s;
+background:#22c55e;padding:10px 20px;border-radius:25px;
+cursor:pointer;border:none;color:white;
 }
 
-.btn:hover{
-    background:#16a34a;
-    transform:scale(1.1);
+/* PRODUCTOS */
+.products{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;padding:80px 40px;
 }
 
-/* SECCIONES */
-section{
-    padding:80px 50px;
+.product{
+background:#1e293b;padding:20px;border-radius:15px;text-align:center;
 }
 
-h2{
-    text-align:center;
-    margin-bottom:40px;
+.product button{margin-top:10px;}
+
+/* MODAL */
+.modal{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.8);display:none;
+justify-content:center;align-items:center;
 }
 
-/* SERVICIOS */
-.services{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+.modal.active{display:flex;}
+
+.modal-box{
+background:#1e293b;padding:30px;border-radius:10px;width:300px;
 }
 
-.card{
-    background:#1e293b;
-    padding:20px;
-    border-radius:15px;
-    transition:0.3s;
+.modal input{
+width:100%;padding:10px;margin:10px 0;border:none;border-radius:5px;
 }
 
-.card:hover{
-    transform:translateY(-10px);
+/* CARRITO */
+.cart-panel{
+position:fixed;right:-100%;top:0;width:300px;height:100%;
+background:#020617;padding:20px;transition:0.4s;
 }
 
-/* GALERIA */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-}
-
-.gallery img{
-    width:100%;
-    border-radius:10px;
-    transition:0.3s;
-}
-
-.gallery img:hover{
-    transform:scale(1.05);
-}
-
-/* CONTACTO */
-.contact{
-    text-align:center;
-}
-
-/* WHATSAPP */
-.whatsapp{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    padding:15px;
-    border-radius:50%;
-    font-size:25px;
-    text-decoration:none;
-    color:white;
-}
-
-/* ANIMACION */
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
-}
+.cart-panel.active{right:0;}
 
 </style>
 </head>
@@ -150,52 +79,145 @@ h2{
 <body>
 
 <nav>
-    <h2>SublimArte</h2>
-    <div>
-        <a href="#servicios">Servicios</a>
-        <a href="#galeria">Galería</a>
-        <a href="#contacto">Contacto</a>
-    </div>
+<div class="logo">SublimArte</div>
+
+<div class="menu">
+<a onclick="openLogin()">Login</a>
+<a onclick="openRegister()">Registro</a>
+<a onclick="toggleCart()">Carrito <span id="cartCount" class="cart">0</span></a>
+</div>
 </nav>
 
 <div class="hero">
-    <div>
-        <h1>Productos Personalizados</h1>
-        <p>Tazas, remeras, gorras, almohadones y mucho más</p>
-        <a href="https://wa.me/549XXXXXXXXXX" class="btn">Pedir por WhatsApp</a>
-    </div>
+<div>
+<h1>Tu diseño, tu estilo</h1>
+<p>Comprá productos personalizados</p>
+<button class="btn">Ver productos</button>
+</div>
 </div>
 
-<section id="servicios">
-    <h2>Nuestros Productos</h2>
-    <div class="services">
-        <div class="card">Tazas personalizadas</div>
-        <div class="card">Remeras sublimadas</div>
-        <div class="card">Gorras</div>
-        <div class="card">Almohadones</div>
-        <div class="card">Llaveros</div>
-        <div class="card">Botellas térmicas</div>
-    </div>
-</section>
+<section class="products" id="products"></section>
 
-<section id="galeria">
-    <h2>Trabajos</h2>
-    <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1606813909024-1f6b7c6aefc7">
-        <img src="https://images.unsplash.com/photo-1585386959984-a41552231658">
-        <img src="https://images.unsplash.com/photo-1593032465175-481ac7f401c0">
-        <img src="https://images.unsplash.com/photo-1616628182504-6c9e7e7b6f77">
-    </div>
-</section>
+<!-- LOGIN -->
+<div class="modal" id="loginModal">
+<div class="modal-box">
+<h3>Login</h3>
+<input id="loginUser" placeholder="Usuario">
+<input id="loginPass" type="password" placeholder="Contraseña">
+<button class="btn" onclick="login()">Entrar</button>
+</div>
+</div>
 
-<section id="contacto" class="contact">
-    <h2>Contacto</h2>
-    <p>Estamos en tu ciudad, hacemos envíos y trabajamos por pedido.</p>
-    <br>
-    <a href="https://wa.me/549XXXXXXXXXX" class="btn">Escribinos</a>
-</section>
+<!-- REGISTER -->
+<div class="modal" id="registerModal">
+<div class="modal-box">
+<h3>Registro</h3>
+<input id="regUser" placeholder="Usuario">
+<input id="regPass" type="password" placeholder="Contraseña">
+<button class="btn" onclick="register()">Crear cuenta</button>
+</div>
+</div>
 
-<a href="https://wa.me/549XXXXXXXXXX" class="whatsapp">💬</a>
+<!-- CARRITO -->
+<div class="cart-panel" id="cartPanel">
+<h3>Carrito</h3>
+<div id="cartItems"></div>
+<br>
+<button class="btn" onclick="checkout()">Comprar</button>
+</div>
+
+<script>
+
+// PRODUCTOS
+const productos = [
+{name:"Taza personalizada", precio:3000},
+{name:"Remera sublimada", precio:6000},
+{name:"Gorra", precio:4000},
+{name:"Almohadón", precio:5000}
+];
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// RENDER PRODUCTOS
+const container = document.getElementById("products");
+
+productos.forEach((p,i)=>{
+container.innerHTML += `
+<div class="product">
+<h3>${p.name}</h3>
+<p>$${p.precio}</p>
+<button onclick="addToCart(${i})" class="btn">Agregar</button>
+</div>`;
+});
+
+// AGREGAR AL CARRITO
+function addToCart(i){
+cart.push(productos[i]);
+localStorage.setItem("cart", JSON.stringify(cart));
+updateCart();
+}
+
+// ACTUALIZAR CARRITO
+function updateCart(){
+document.getElementById("cartCount").innerText = cart.length;
+
+let items = "";
+cart.forEach(p=>{
+items += `<p>${p.name} - $${p.precio}</p>`;
+});
+document.getElementById("cartItems").innerHTML = items;
+}
+
+updateCart();
+
+// TOGGLE CARRITO
+function toggleCart(){
+document.getElementById("cartPanel").classList.toggle("active");
+}
+
+// LOGIN / REGISTER
+function openLogin(){
+document.getElementById("loginModal").classList.add("active");
+}
+function openRegister(){
+document.getElementById("registerModal").classList.add("active");
+}
+
+function register(){
+let u = regUser.value;
+let p = regPass.value;
+localStorage.setItem("user", u);
+localStorage.setItem("pass", p);
+alert("Registrado");
+}
+
+function login(){
+let u = loginUser.value;
+let p = loginPass.value;
+
+if(u === localStorage.getItem("user") && p === localStorage.getItem("pass")){
+alert("Bienvenido " + u);
+}else{
+alert("Datos incorrectos");
+}
+}
+
+// CHECKOUT
+function checkout(){
+alert("Compra realizada (demo)");
+cart = [];
+localStorage.removeItem("cart");
+updateCart();
+}
+
+// CERRAR MODALES
+window.onclick = function(e){
+document.querySelectorAll(".modal").forEach(m=>{
+if(e.target === m) m.classList.remove("active");
+});
+}
+
+</script>
 
 </body>
 </html>
