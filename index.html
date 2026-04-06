@@ -9,6 +9,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#020617;color:white;overflow-x:hidden;}
+
 /* CONTACTO PRO */
 .contact-box{
 margin-top:30px;
@@ -20,38 +21,26 @@ text-align:center;
 transition:0.4s;
 transform-style:preserve-3d;
 }
-
-/* efecto 3D al pasar el mouse */
 .contact-box:hover{
 transform:rotateY(5deg) rotateX(5deg) scale(1.03);
 box-shadow:0 0 40px rgba(34,197,94,0.4);
 }
-
-/* boton animado */
 .contact-btn{
 display:inline-block;
 margin-top:20px;
 animation:pulse 2s infinite;
 }
-
 @keyframes pulse{
 0%{transform:scale(1);}
 50%{transform:scale(1.08);}
 100%{transform:scale(1);}
 }
-
-/* info */
 .contact-info{
 margin-top:25px;
 line-height:1.8;
 opacity:0.9;
 }
-
-/* animacion entrada */
-#contacto{
-animation:fadeUp 0.8s ease;
-}
-
+#contacto{animation:fadeUp 0.8s ease;}
 @keyframes fadeUp{
 from{opacity:0;transform:translateY(30px);}
 to{opacity:1;transform:translateY(0);}
@@ -90,9 +79,24 @@ height:100%;
 background:#020617;
 padding:20px;
 transition:0.4s;
-z-index:2000; /* 🔥 esto es la clave */
+z-index:2000;
 }
 .cart-panel.active{right:0;}
+.cart-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+.close-cart{
+cursor:pointer;
+font-size:20px;
+transition:0.3s;
+}
+.close-cart:hover{
+color:#22c55e;
+transform:scale(1.2);
+}
 
 /* IA */
 .ai-btn{position:fixed;left:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
@@ -101,7 +105,37 @@ z-index:2000; /* 🔥 esto es la clave */
 #chat{flex:1;overflow:auto;font-size:14px;}
 input{padding:10px;border:none;border-radius:5px;}
 
-/* Animacion fadeIn */
+/* INFO NUEVA */
+#info{text-align:center;}
+.info-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-top:40px;
+}
+.info-card{
+background:rgba(255,255,255,0.05);
+padding:25px;
+border-radius:20px;
+transition:0.4s;
+backdrop-filter:blur(10px);
+}
+.info-card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 25px rgba(59,130,246,0.3);
+}
+.info-extra{
+margin-top:50px;
+background:rgba(34,197,94,0.1);
+padding:25px;
+border-radius:15px;
+}
+.info-extra ul{
+list-style:none;
+margin-top:15px;
+line-height:2;
+}
+
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 </style>
 </head>
@@ -117,7 +151,6 @@ input{padding:10px;border:none;border-radius:5px;}
 </div>
 </nav>
 
-<!-- HERO -->
 <div id="home" class="hero">
 <div>
 <h1>Convertimos tus ideas en productos únicos</h1>
@@ -125,46 +158,56 @@ input{padding:10px;border:none;border-radius:5px;}
 </div>
 </div>
 
-<!-- PRODUCTOS -->
 <section id="productos" style="display:none;">
 <h2>Productos</h2>
 <div class="grid" id="grid"></div>
 </section>
 
+<!-- NUEVA SECCION -->
+<section id="info" style="display:none;">
+<h2>¿Qué podemos personalizar?</h2>
+
+<div class="info-grid">
+<div class="info-card"><h3>🧵 Textiles</h3><p>Bolsos, mochilas, delantales, almohadones, gorras y más.</p></div>
+<div class="info-card"><h3>🎁 Regalos</h3><p>Tazas, mates, botellas, llaveros, rompecabezas.</p></div>
+<div class="info-card"><h3>🏠 Decoración</h3><p>Cuadros, madera MDF y artículos personalizados.</p></div>
+<div class="info-card"><h3>💼 Publicidad</h3><p>Placas, branding y productos promocionales.</p></div>
+</div>
+
+<div class="info-extra">
+<h3>📌 Recomendaciones</h3>
+<ul>
+<li>✔ Material: poliéster o recubrimiento especial</li>
+<li>✔ Colores claros para mejor resultado</li>
+<li>✔ Uso de prensa plana y de tazas</li>
+</ul>
+</div>
+</section>
+
 <section id="contacto" style="display:none;">
 <h2>Contacto</h2>
-
 <div class="contact-box">
-
 <p>Escribinos por nuestros canales 👇</p>
-
 <a href="https://wa.me/5491123456789" class="btn contact-btn">💬 WhatsApp</a>
-
 <div class="contact-info">
 <p>📧 contacto@sublimartepro.com</p>
 <p>📞 +54 9 11 2345-6789</p>
 <p>📍 Buenos Aires, Argentina</p>
 <p>📸 Instagram: @sublimarte.pro</p>
 </div>
-
 </div>
-
 </section>
 
-<!-- CARRITO -->
 <div class="cart" onclick="toggleCart()">🛒</div>
 <div class="cart-panel" id="cartPanel">
 <div class="cart-header">
 <h3>Carrito</h3>
 <span class="close-cart" onclick="toggleCart()">✖</span>
 </div>
-
 <div id="cartItems"></div>
-
 <button class="btn">Finalizar compra</button>
 </div>
 
-<!-- IA -->
 <div class="ai-btn" onclick="toggleAI()">🤖</div>
 <div class="ai-box" id="aiBox">
 <div id="chat"></div>
@@ -172,12 +215,27 @@ input{padding:10px;border:none;border-radius:5px;}
 </div>
 
 <script>
-// NAV
-function goHome(){home.style.display="flex";productos.style.display="none";contacto.style.display="none";}
-function showProductos(){home.style.display="none";productos.style.display="block";contacto.style.display="none";}
-function showContacto(){home.style.display="none";productos.style.display="none";contacto.style.display="block";}
+function goHome(){
+home.style.display="flex";
+productos.style.display="none";
+contacto.style.display="none";
+info.style.display="none";
+}
 
-// PRODUCTOS
+function showProductos(){
+home.style.display="none";
+productos.style.display="block";
+contacto.style.display="none";
+info.style.display="block";
+}
+
+function showContacto(){
+home.style.display="none";
+productos.style.display="none";
+contacto.style.display="block";
+info.style.display="none";
+}
+
 const productosArr=[
 {name:"Taza personalizada",precio:3000,img:"https://images.unsplash.com/photo-1606813909024-1f6b7c6aefc7"},
 {name:"Remera premium",precio:6000,img:"https://images.unsplash.com/photo-1585386959984-a41552231658"},
@@ -185,20 +243,17 @@ const productosArr=[
 ];
 productosArr.forEach((p,i)=>{grid.innerHTML+=`<div class="card"><img src="${p.img}"><h3>${p.name}</h3><p>$${p.precio}</p><button class="btn" onclick="add(${i})">Agregar</button></div>`;});
 
-// CARRITO
 let cart=[];
 function add(i){cart.push(productosArr[i]);render();}
 function render(){cartItems.innerHTML=cart.map(p=>`<p>${p.name} - $${p.precio}</p>`).join("");}
 function toggleCart(){cartPanel.classList.toggle("active");}
 
-// IA
 msg.addEventListener("keypress",e=>{
 if(e.key==="Enter"){
 let t=msg.value.toLowerCase();
-let r="Te puedo ayudar a elegir productos 😉";
-if(t.includes("precio")) r="Tenemos opciones desde $3000";
-if(t.includes("envio")) r="Enviamos a todo el país 🚚";
-if(t.includes("regalo")) r="Las tazas personalizadas son ideales 🎁";
+let r="Te puedo ayudar 😉";
+if(t.includes("precio")) r="Desde $3000";
+if(t.includes("envio")) r="Envíos a todo el país 🚚";
 chat.innerHTML+=`<p><b>Vos:</b> ${t}</p>`;
 chat.innerHTML+=`<p><b>IA:</b> ${r}</p>`;
 msg.value="";
