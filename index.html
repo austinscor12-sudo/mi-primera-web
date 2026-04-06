@@ -81,7 +81,17 @@ section{padding:100px 60px;max-width:1200px;margin:auto;animation:fadeIn 1.5s;}
 
 /* CARRITO */
 .cart{position:fixed;right:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
-.cart-panel{position:fixed;right:-350px;top:0;width:350px;height:100%;background:#020617;padding:20px;transition:0.4s;}
+.cart-panel{
+position:fixed;
+right:-350px;
+top:0;
+width:350px;
+height:100%;
+background:#020617;
+padding:20px;
+transition:0.4s;
+z-index:2000; /* 🔥 esto es la clave */
+}
 .cart-panel.active{right:0;}
 
 /* IA */
