@@ -237,6 +237,8 @@ info.style.display="none";
 }
 
 const productosArr=[
+
+// originales
 {
 name:"Taza personalizada",
 precio:3000,
@@ -251,7 +253,35 @@ img:"https://plotter7.com.ar/wp-content/uploads/2019/11/plotter7002-scaled.jpg"
 name:"Gorra",
 precio:4000,
 img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5E5BUUrCwdVUFFuipFj7JqQRIGx3ItVjUEg&s"
+},
+
+// nuevos productos
+{
+name:"Almohadón personalizado",
+precio:5000,
+img:"https://images.unsplash.com/photo-1584100936595-c0654b55a2e2"
+},
+{
+name:"Mousepad",
+precio:2500,
+img:"https://images.unsplash.com/photo-1587202372775-e229f172b9d7"
+},
+{
+name:"Tote bag",
+precio:3500,
+img:"https://images.unsplash.com/photo-1597481499750-3e6b22637e12"
+},
+{
+name:"Rompecabezas",
+precio:4500,
+img:"https://images.unsplash.com/photo-1616627985977-9d3c1c4b3e44"
+},
+{
+name:"Llavero",
+precio:1500,
+img:"https://images.unsplash.com/photo-1616627561950-9f7464f2d0c1"
 }
+
 ];
 productosArr.forEach((p,i)=>{grid.innerHTML+=`<div class="card"><img src="${p.img}"><h3>${p.name}</h3><p>$${p.precio}</p><button class="btn" onclick="add(${i})">Agregar</button></div>`;});
 
