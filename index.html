@@ -237,9 +237,21 @@ info.style.display="none";
 }
 
 const productosArr=[
-{name:"Taza personalizada",precio:3000,img:"https://images.unsplash.com/photo-1606813909024-1f6b7c6aefc7"},
-{name:"Remera premium",precio:6000,img:"https://images.unsplash.com/photo-1585386959984-a41552231658"},
-{name:"Gorra",precio:4000,img:"https://images.unsplash.com/photo-1593032465175-481ac7f401c0"}
+{
+name:"Taza personalizada",
+precio:3000,
+img:"https://decorazonobjetos.com.ar/wp-content/uploads/2024/02/WhatsApp-Image-2022-11-13-at-15.23.40-1-600x797.jpeg"
+},
+{
+name:"Remera premium",
+precio:6000,
+img:"https://plotter7.com.ar/wp-content/uploads/2019/11/plotter7002-scaled.jpg"
+},
+{
+name:"Gorra",
+precio:4000,
+img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5E5BUUrCwdVUFFuipFj7JqQRIGx3ItVjUEg&s"
+}
 ];
 productosArr.forEach((p,i)=>{grid.innerHTML+=`<div class="card"><img src="${p.img}"><h3>${p.name}</h3><p>$${p.precio}</p><button class="btn" onclick="add(${i})">Agregar</button></div>`;});
 
