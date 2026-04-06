@@ -10,42 +10,6 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#020617;color:white;overflow-x:hidden;}
 
-/* CONTACTO PRO */
-.contact-box{
-margin-top:30px;
-padding:30px;
-background:rgba(255,255,255,0.05);
-border-radius:20px;
-backdrop-filter:blur(10px);
-text-align:center;
-transition:0.4s;
-transform-style:preserve-3d;
-}
-.contact-box:hover{
-transform:rotateY(5deg) rotateX(5deg) scale(1.03);
-box-shadow:0 0 40px rgba(34,197,94,0.4);
-}
-.contact-btn{
-display:inline-block;
-margin-top:20px;
-animation:pulse 2s infinite;
-}
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.08);}
-100%{transform:scale(1);}
-}
-.contact-info{
-margin-top:25px;
-line-height:1.8;
-opacity:0.9;
-}
-#contacto{animation:fadeUp 0.8s ease;}
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(30px);}
-to{opacity:1;transform:translateY(0);}
-}
-
 /* NAV */
 nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding:20px 40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);z-index:1000;}
 .logo{color:#22c55e;font-weight:600;font-size:20px;}
@@ -54,19 +18,55 @@ nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding
 .menu a:hover{opacity:1;}
 
 /* HERO */
-.hero{height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#22c55e,#3b82f6);animation:fadeIn 1s;}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#22c55e,#3b82f6);}
 .hero h1{font-size:60px;max-width:600px;}
 .btn{background:#22c55e;padding:14px 30px;border-radius:30px;cursor:pointer;border:none;margin-top:20px;color:white;transition:0.3s;}
 .btn:hover{transform:scale(1.08);box-shadow:0 0 20px #22c55e;}
 
 /* SECCIONES */
-section{padding:100px 60px;max-width:1200px;margin:auto;animation:fadeIn 1.5s;}
+section{padding:100px 60px;max-width:1200px;margin:auto;}
 
 /* PRODUCTOS */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
 .card{background:#111827;border-radius:20px;overflow:hidden;transition:0.4s;}
 .card img{width:100%;height:220px;object-fit:cover;}
 .card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 0 30px rgba(34,197,94,0.4);}
+
+/* INFO (AHORA TAMBIÉN EN HOME) */
+.home-info{
+margin-top:60px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+width:80%;
+}
+
+.home-card{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:15px;
+transition:0.4s;
+transform-style:preserve-3d;
+}
+
+.home-card:hover{
+transform:rotateY(10deg) scale(1.05);
+box-shadow:0 0 25px rgba(59,130,246,0.4);
+}
+
+/* CONTACTO */
+.contact-box{
+margin-top:30px;
+padding:30px;
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+text-align:center;
+transition:0.4s;
+}
+.contact-box:hover{
+transform:scale(1.03);
+box-shadow:0 0 40px rgba(34,197,94,0.4);
+}
 
 /* CARRITO */
 .cart{position:fixed;right:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
@@ -82,61 +82,15 @@ transition:0.4s;
 z-index:2000;
 }
 .cart-panel.active{right:0;}
-.cart-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:15px;
-}
-.close-cart{
-cursor:pointer;
-font-size:20px;
-transition:0.3s;
-}
-.close-cart:hover{
-color:#22c55e;
-transform:scale(1.2);
-}
+.cart-header{display:flex;justify-content:space-between;}
+.close-cart{cursor:pointer;font-size:20px;}
 
 /* IA */
 .ai-btn{position:fixed;left:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
 .ai-box{position:fixed;left:20px;bottom:90px;width:280px;height:350px;background:#111827;display:none;flex-direction:column;padding:10px;border-radius:10px;}
 .ai-box.active{display:flex;}
-#chat{flex:1;overflow:auto;font-size:14px;}
+#chat{flex:1;overflow:auto;}
 input{padding:10px;border:none;border-radius:5px;}
-
-/* INFO NUEVA */
-#info{text-align:center;}
-.info-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-margin-top:40px;
-}
-.info-card{
-background:rgba(255,255,255,0.05);
-padding:25px;
-border-radius:20px;
-transition:0.4s;
-backdrop-filter:blur(10px);
-}
-.info-card:hover{
-transform:translateY(-10px) scale(1.03);
-box-shadow:0 0 25px rgba(59,130,246,0.3);
-}
-.info-extra{
-margin-top:50px;
-background:rgba(34,197,94,0.1);
-padding:25px;
-border-radius:15px;
-}
-.info-extra ul{
-list-style:none;
-margin-top:15px;
-line-height:2;
-}
-
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 </style>
 </head>
 
@@ -151,53 +105,41 @@ line-height:2;
 </div>
 </nav>
 
+<!-- HERO -->
 <div id="home" class="hero">
-<div>
 <h1>Convertimos tus ideas en productos únicos</h1>
 <button class="btn" onclick="showProductos()">Comprar ahora</button>
-</div>
+
+<!-- INFO ANIMADA -->
+<div class="home-info">
+<div class="home-card">🧵 Textiles</div>
+<div class="home-card">🎁 Regalos</div>
+<div class="home-card">🏠 Decoración</div>
+<div class="home-card">💼 Publicidad</div>
 </div>
 
+</div>
+
+<!-- PRODUCTOS -->
 <section id="productos" style="display:none;">
 <h2>Productos</h2>
 <div class="grid" id="grid"></div>
 </section>
 
-<!-- NUEVA SECCION -->
-<section id="info" style="display:none;">
-<h2>¿Qué podemos personalizar?</h2>
-
-<div class="info-grid">
-<div class="info-card"><h3>🧵 Textiles</h3><p>Bolsos, mochilas, delantales, almohadones, gorras y más.</p></div>
-<div class="info-card"><h3>🎁 Regalos</h3><p>Tazas, mates, botellas, llaveros, rompecabezas.</p></div>
-<div class="info-card"><h3>🏠 Decoración</h3><p>Cuadros, madera MDF y artículos personalizados.</p></div>
-<div class="info-card"><h3>💼 Publicidad</h3><p>Placas, branding y productos promocionales.</p></div>
-</div>
-
-<div class="info-extra">
-<h3>📌 Recomendaciones</h3>
-<ul>
-<li>✔ Material: poliéster o recubrimiento especial</li>
-<li>✔ Colores claros para mejor resultado</li>
-<li>✔ Uso de prensa plana y de tazas</li>
-</ul>
-</div>
-</section>
-
+<!-- CONTACTO -->
 <section id="contacto" style="display:none;">
 <h2>Contacto</h2>
 <div class="contact-box">
-<p>Escribinos por nuestros canales 👇</p>
-<a href="https://wa.me/5491123456789" class="btn contact-btn">💬 WhatsApp</a>
-<div class="contact-info">
+<p>Escribinos 👇</p>
+<a href="#" class="btn">WhatsApp</a>
 <p>📧 contacto@sublimartepro.com</p>
 <p>📞 +54 9 11 2345-6789</p>
-<p>📍 Buenos Aires, Argentina</p>
-<p>📸 Instagram: @sublimarte.pro</p>
-</div>
+<p>📍 Buenos Aires</p>
+<p>📸 @sublimarte.pro</p>
 </div>
 </section>
 
+<!-- CARRITO -->
 <div class="cart" onclick="toggleCart()">🛒</div>
 <div class="cart-panel" id="cartPanel">
 <div class="cart-header">
@@ -205,13 +147,13 @@ line-height:2;
 <span class="close-cart" onclick="toggleCart()">✖</span>
 </div>
 <div id="cartItems"></div>
-<button class="btn">Finalizar compra</button>
 </div>
 
+<!-- IA -->
 <div class="ai-btn" onclick="toggleAI()">🤖</div>
 <div class="ai-box" id="aiBox">
 <div id="chat"></div>
-<input id="msg" placeholder="Preguntá...">
+<input id="msg">
 </div>
 
 <script>
@@ -219,88 +161,48 @@ function goHome(){
 home.style.display="flex";
 productos.style.display="none";
 contacto.style.display="none";
-info.style.display="none";
 }
 
 function showProductos(){
 home.style.display="none";
 productos.style.display="block";
 contacto.style.display="none";
-info.style.display="block";
 }
 
 function showContacto(){
 home.style.display="none";
 productos.style.display="none";
 contacto.style.display="block";
-info.style.display="none";
 }
 
 const productosArr=[
 
-// originales
-{
-name:"Taza personalizada",
-precio:3000,
-img:"https://decorazonobjetos.com.ar/wp-content/uploads/2024/02/WhatsApp-Image-2022-11-13-at-15.23.40-1-600x797.jpeg"
-},
-{
-name:"Remera premium",
-precio:6000,
-img:"https://plotter7.com.ar/wp-content/uploads/2019/11/plotter7002-scaled.jpg"
-},
-{
-name:"Gorra",
-precio:4000,
-img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5E5BUUrCwdVUFFuipFj7JqQRIGx3ItVjUEg&s"
-},
+{name:"Taza personalizada",precio:3000,img:"https://decorazonobjetos.com.ar/wp-content/uploads/2024/02/WhatsApp-Image-2022-11-13-at-15.23.40-1-600x797.jpeg"},
+{name:"Remera premium",precio:6000,img:"https://plotter7.com.ar/wp-content/uploads/2019/11/plotter7002-scaled.jpg"},
+{name:"Gorra",precio:4000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5E5BUUrCwdVUFFuipFj7JqQRIGx3ItVjUEg&s"},
 
-// nuevos productos
-{
-name:"Almohadón personalizado",
-precio:5000,
-img:"https://images.unsplash.com/photo-1584100936595-c0654b55a2e2"
-},
-{
-name:"Mousepad",
-precio:2500,
-img:"https://images.unsplash.com/photo-1587202372775-e229f172b9d7"
-},
-{
-name:"Tote bag",
-precio:3500,
-img:"https://images.unsplash.com/photo-1597481499750-3e6b22637e12"
-},
-{
-name:"Rompecabezas",
-precio:4500,
-img:"https://images.unsplash.com/photo-1616627985977-9d3c1c4b3e44"
-},
-{
-name:"Llavero",
-precio:1500,
-img:"https://images.unsplash.com/photo-1616627561950-9f7464f2d0c1"
-}
+{name:"Almohadón",precio:5000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJXqzIn-rSfn7BqVdSQDadx_u7xhtNVVsfg&s"},
+{name:"Mousepad",precio:2500,img:"https://taino.pe/cdn/shop/files/mouse_pad_20x20_cuadrado_taino.jpg?v=1739569615&width=1946"},
+{name:"Tote bag",precio:3500,img:"https://http2.mlstatic.com/D_978331-MLA73970920725_012024-O.jpg"},
+{name:"Rompecabezas",precio:4500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAkSDX-7OQ3bVqjCbNd25DFpqptROd1iUetA&s"},
+{name:"Llavero",precio:1500,img:"https://http2.mlstatic.com/D_NQ_NP_635313-MLA88368947229_072025-O.webp"}
 
 ];
-productosArr.forEach((p,i)=>{grid.innerHTML+=`<div class="card"><img src="${p.img}"><h3>${p.name}</h3><p>$${p.precio}</p><button class="btn" onclick="add(${i})">Agregar</button></div>`;});
+
+productosArr.forEach((p,i)=>{
+grid.innerHTML+=`<div class="card">
+<img src="${p.img}">
+<h3>${p.name}</h3>
+<p>$${p.precio}</p>
+<button class="btn" onclick="add(${i})">Agregar</button>
+</div>`;
+});
 
 let cart=[];
 function add(i){cart.push(productosArr[i]);render();}
-function render(){cartItems.innerHTML=cart.map(p=>`<p>${p.name} - $${p.precio}</p>`).join("");}
+function render(){cartItems.innerHTML=cart.map(p=>`<p>${p.name}</p>`).join("");}
 function toggleCart(){cartPanel.classList.toggle("active");}
 
-msg.addEventListener("keypress",e=>{
-if(e.key==="Enter"){
-let t=msg.value.toLowerCase();
-let r="Te puedo ayudar 😉";
-if(t.includes("precio")) r="Desde $3000";
-if(t.includes("envio")) r="Envíos a todo el país 🚚";
-chat.innerHTML+=`<p><b>Vos:</b> ${t}</p>`;
-chat.innerHTML+=`<p><b>IA:</b> ${r}</p>`;
-msg.value="";
-}
-});
 function toggleAI(){aiBox.classList.toggle("active");}
 </script>
 
