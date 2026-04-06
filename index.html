@@ -144,8 +144,13 @@ input{padding:10px;border:none;border-radius:5px;}
 <!-- CARRITO -->
 <div class="cart" onclick="toggleCart()">🛒</div>
 <div class="cart-panel" id="cartPanel">
+<div class="cart-header">
 <h3>Carrito</h3>
+<span class="close-cart" onclick="toggleCart()">✖</span>
+</div>
+
 <div id="cartItems"></div>
+
 <button class="btn">Finalizar compra</button>
 </div>
 
