@@ -2,155 +2,151 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SublimArte Pro</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Tienda Sublimación</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#020617;color:white;overflow-x:hidden;scroll-behavior:smooth;}
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+}
 
 /* NAV */
 nav{
-position:fixed;width:100%;
-display:flex;justify-content:space-between;
-padding:20px 40px;
-background:rgba(0,0,0,0.5);
-backdrop-filter:blur(10px);
+display:flex;
+justify-content:space-between;
+padding:15px;
+background:#020617;
+position:sticky;
+top:0;
 z-index:1000;
 }
-.logo{color:#22c55e;font-weight:600;font-size:20px;}
-.menu{display:flex;gap:25px;}
-.menu a{cursor:pointer;text-decoration:none;color:white;opacity:0.8;}
-.menu a:hover{opacity:1;}
 
-.menu-btn{cursor:pointer;font-size:25px;}
-
-/* SIDEBAR */
-.sidebar{
-position:fixed;
-left:-250px;
-top:0;
-width:250px;
-height:100%;
-background:#111827;
-padding:20px;
-transition:0.4s;
-z-index:3000;
+.menu button{
+margin-left:10px;
 }
-.sidebar.active{left:0;}
-.sidebar a{display:block;margin:15px 0;cursor:pointer;}
 
 /* HERO */
 .hero{
-height:100vh;
+height:80vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:linear-gradient(135deg,#22c55e,#3b82f6);
 }
-.hero h1{font-size:60px;max-width:600px;}
 
 .btn{
-background:#22c55e;
-padding:14px 30px;
-border-radius:30px;
-cursor:pointer;
+padding:10px 20px;
 border:none;
-margin-top:20px;
+border-radius:8px;
+cursor:pointer;
+background:#22c55e;
 color:white;
-transition:0.3s;
 }
-.btn:hover{transform:scale(1.08);}
 
 /* INFO */
-.info-section{padding:100px 60px;text-align:center;}
-.info-cards{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.info-card{background:#111827;padding:25px;border-radius:15px;}
+.info-section{
+padding:40px;
+text-align:center;
+}
 
 /* PRODUCTOS */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.card{background:#111827;border-radius:20px;text-align:center;padding-bottom:15px;}
-.card img{width:100%;height:220px;object-fit:cover;}
+#productos{
+display:none;
+padding:20px;
+}
 
-section{padding:100px 60px;max-width:1200px;margin:auto;}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
 
-/* CONTACTO */
-.contact-box{padding:40px;background:#111827;border-radius:20px;text-align:center;}
-.contact-grid{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
-.contact-item{background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;}
+.card{
+background:#1e293b;
+padding:10px;
+border-radius:10px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+border-radius:10px;
+}
 
 /* CARRITO */
 .cart{
 position:fixed;
-right:20px;
-bottom:20px;
-background:#22c55e;
-padding:15px;
-border-radius:50%;
-cursor:pointer;
-}
-.cart-count{
-position:absolute;
-top:-5px;
-right:-5px;
-background:red;
-border-radius:50%;
-padding:3px 7px;
-font-size:12px;
-}
-
-.cart-panel{
-position:fixed;
-right:-350px;
+right:-300px;
 top:0;
-width:350px;
+width:300px;
 height:100%;
 background:#020617;
 padding:20px;
-transition:0.4s;
+transition:0.3s;
+z-index:2000;
 }
-.cart-panel.active{right:0;}
+
+.cart.active{
+right:0;
+}
+
+/* MENU PANEL */
+.panel{
+position:fixed;
+left:-250px;
+top:0;
+width:250px;
+height:100%;
+background:#020617;
+padding:20px;
+transition:0.3s;
+z-index:2000;
+}
+
+.panel.active{
+left:0;
+}
 
 /* ANIMACION */
-.fly-img{
+.fly{
 position:fixed;
-z-index:3000;
 width:60px;
-height:60px;
+z-index:3000;
 transition:0.8s;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:30px;
-background:#111827;
-margin-top:50px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<div class="logo">SublimArte</div>
+<h2>Tienda</h2>
+
 <div class="menu">
-<a onclick="goHome()">Inicio</a>
-<a onclick="showProductos()">Productos</a>
-<a onclick="showContacto()">Contacto</a>
+<button onclick="showHome()">Inicio</button>
+<button onclick="showProductos()">Productos</button>
+<button onclick="toggleCart()">🛒</button>
+<button onclick="toggleMenu()">☰</button>
 </div>
 </nav>
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-<a onclick="goHome()">🏠 Inicio</a>
-<a>👤 Perfil</a>
-<a>⚙ Configuración</a>
-<a>🚪 Cerrar sesión</a>
+<!-- MENU LATERAL -->
+<div class="panel" id="menuPanel">
+<h3>Menú</h3>
+<button onclick="toggleMenu()">Cerrar</button>
+<p>Configuración</p>
+<p>Perfil</p>
+</div>
+
+<!-- CARRITO -->
+<div class="cart" id="cart">
+<h3>Carrito</h3>
+<button onclick="toggleCart()">Cerrar</button>
+<ul id="cartList"></ul>
 </div>
 
 <!-- HOME -->
@@ -159,109 +155,94 @@ margin-top:50px;
 <div class="hero">
 <h1>Convertimos tus ideas en productos únicos</h1>
 
-<div style="display:flex;gap:15px;">
+<div style="display:flex; gap:10px;">
 <button class="btn" onclick="scrollInfo()">Ver más</button>
-<button class="btn" onclick="showProductos()" style="background:#3b82f6;">Ver productos</button>
+<button class="btn" onclick="showProductos()">Ver productos</button>
 </div>
-
 </div>
 
 <div class="info-section" id="info">
 <h2>¿Qué es la sublimación?</h2>
-<p>Transferimos diseños con alta calidad y durabilidad en múltiples productos.</p>
-
-<div class="info-cards">
-<div class="info-card">🎨 Personalización</div>
-<div class="info-card">🔥 Calidad</div>
-<div class="info-card">⚡ Rapidez</div>
-</div>
+<p>Impresión de alta calidad en productos personalizados.</p>
 </div>
 
 </div>
 
 <!-- PRODUCTOS -->
-<section id="productos" style="display:none;">
+<div id="productos">
+
 <h2>Productos</h2>
+
+<button onclick="showHome()">⬅ Volver</button>
+
 <div class="grid" id="grid"></div>
-</section>
-
-<!-- CONTACTO -->
-<section id="contacto" style="display:none;">
-<h2>Contacto</h2>
-
-<div class="contact-box">
-<a href="https://wa.me/5491123456789?text=Hola%20quiero%20comprar" target="_blank" class="btn">WhatsApp</a>
-
-<div class="contact-grid">
-<div class="contact-item">📧 contacto@sublimartepro.com</div>
-<div class="contact-item">📞 +54 9 11 2345-6789</div>
-<div class="contact-item">📍 Buenos Aires</div>
-<div class="contact-item">📸 @sublimarte.pro</div>
-</div>
 
 </div>
-</section>
-
-<!-- CARRITO -->
-<div class="cart" onclick="toggleCart()">
-🛒 <span class="cart-count" id="count">0</span>
-</div>
-
-<div class="cart-panel" id="cartPanel">
-<h3>Carrito</h3>
-<div id="cartItems"></div>
-</div>
-
-<footer>
-<p>© 2026 SublimArte Pro - Todos los derechos reservados</p>
-</footer>
 
 <script>
 
-// NAV
-function goHome(){home.style.display="block";productos.style.display="none";contacto.style.display="none";}
-function showProductos(){home.style.display="none";productos.style.display="block";contacto.style.display="none";}
-function showContacto(){home.style.display="none";productos.style.display="none";contacto.style.display="block";}
-
-// MENU
-function toggleMenu(){sidebar.classList.toggle("active");}
-
-// SCROLL
-function scrollInfo(){document.getElementById("info").scrollIntoView({behavior:"smooth"});}
-
-// PRODUCTOS
-const productosArr=[
-{name:"Taza personalizada",precio:3000,img:"https://decorazonobjetos.com.ar/wp-content/uploads/2024/02/WhatsApp-Image-2022-11-13-at-15.23.40-1-600x797.jpeg"},
-{name:"Remera premium",precio:6000,img:"https://plotter7.com.ar/wp-content/uploads/2019/11/plotter7002-scaled.jpg"},
-{name:"Gorra",precio:4000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5E5BUUrCwdVUFFuipFj7JqQRIGx3ItVjUEg&s"}
+let productosArr=[
+{name:"Taza",precio:1000,img:"https://via.placeholder.com/200"},
+{name:"Remera",precio:3000,img:"https://via.placeholder.com/200"},
+{name:"Gorra",precio:2000,img:"https://via.placeholder.com/200"}
 ];
 
+let cart=[];
+
+/* MOSTRAR SECCIONES */
+function showHome(){
+document.getElementById("home").style.display="block";
+document.getElementById("productos").style.display="none";
+}
+
+function showProductos(){
+document.getElementById("home").style.display="none";
+document.getElementById("productos").style.display="block";
+}
+
+/* SCROLL */
+function scrollInfo(){
+document.getElementById("info").scrollIntoView({behavior:"smooth"});
+}
+
+/* MENU */
+function toggleMenu(){
+document.getElementById("menuPanel").classList.toggle("active");
+}
+
+/* CARRITO */
+function toggleCart(){
+document.getElementById("cart").classList.toggle("active");
+}
+
+/* RENDER PRODUCTOS */
+function renderProductos(){
+let grid=document.getElementById("grid");
+grid.innerHTML="";
 productosArr.forEach((p,i)=>{
 grid.innerHTML+=`
 <div class="card">
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <p>$${p.precio}</p>
-<button class="btn" onclick="add(${i})">Agregar</button>
+<button onclick="add(${i})">Agregar</button>
 </div>`;
 });
+}
 
-// CARRITO
-let cart=[];
-
+/* AGREGAR AL CARRITO */
 function add(i){
 
-// animacion
 let img=document.querySelectorAll(".card img")[i];
 let rect=img.getBoundingClientRect();
 
-let clone=img.cloneNode(true);
-clone.classList.add("fly-img");
+let clone=img.cloneNode();
+clone.classList.add("fly");
 clone.style.top=rect.top+"px";
 clone.style.left=rect.left+"px";
 document.body.appendChild(clone);
 
-let cartRect=document.querySelector(".cart").getBoundingClientRect();
+let cartRect=document.getElementById("cart").getBoundingClientRect();
 
 setTimeout(()=>{
 clone.style.top=cartRect.top+"px";
@@ -272,32 +253,24 @@ clone.style.opacity="0.5";
 
 setTimeout(()=>clone.remove(),800);
 
-// lógica
+/* lógica */
 let existing=cart.find(p=>p.name===productosArr[i].name);
-if(existing){existing.qty++;}
-else{cart.push({...productosArr[i],qty:1});}
+if(existing) existing.qty++;
+else cart.push({...productosArr[i],qty:1});
 
-render();
+renderCart();
 }
 
-function render(){
-cartItems.innerHTML="";
-let total=0;
-
-cart.forEach((p,i)=>{
-total+=p.qty;
-cartItems.innerHTML+=`
-<div style="display:flex;justify-content:space-between;margin:10px 0;">
-<span>${p.name} x ${p.qty}</span>
-<button onclick="removeItem(${i})">✖</button>
-</div>`;
+/* RENDER CARRITO */
+function renderCart(){
+let list=document.getElementById("cartList");
+list.innerHTML="";
+cart.forEach(p=>{
+list.innerHTML+=`<li>${p.name} x${p.qty}</li>`;
 });
-
-count.innerText=total;
 }
 
-function removeItem(i){cart.splice(i,1);render();}
-function toggleCart(){cartPanel.classList.toggle("active");}
+renderProductos();
 
 </script>
 
