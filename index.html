@@ -1,225 +1,536 @@
+Aquí tienes una versión **MUY MEJORADA** y **PROFESIONAL** de tu código:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SublimArte Pro</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SublimArte Pro - Productos Personalizados Premium</title>
+    <meta name="description" content="Sublimación profesional: tazas, remeras, gorras y más. Diseños personalizados de alta calidad.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <style>
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --secondary: #3b82f6;
+            --dark-bg: #020617;
+            --card-bg: #111827;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --border-radius: 20px;
+            --shadow: 0 20px 40px rgba(0,0,0,0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#020617;color:white;overflow-x:hidden;scroll-behavior:smooth;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* NAV */
-nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding:20px 40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);z-index:1000;}
-.logo{color:#22c55e;font-weight:600;font-size:20px;}
-.menu{display:flex;gap:25px;}
-.menu a{cursor:pointer;text-decoration:none;color:white;opacity:0.8;}
-.menu a:hover{opacity:1;}
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
 
-/* HERO */
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#22c55e,#3b82f6);}
-.hero h1{font-size:60px;max-width:600px;}
-.btn{background:#22c55e;padding:14px 30px;border-radius:30px;cursor:pointer;border:none;margin-top:20px;color:white;transition:0.3s;}
-.btn:hover{transform:scale(1.08);box-shadow:0 0 20px #22c55e;}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* INFO */
-.info-section{
-padding:100px 60px;
-background:#020617;
-text-align:center;
-}
-.info-section h2{font-size:40px;margin-bottom:20px;}
-.info-section p{max-width:800px;margin:auto;opacity:0.8;line-height:1.6;}
-.info-cards{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.info-card{background:#111827;padding:25px;border-radius:15px;transition:0.4s;}
-.info-card:hover{transform:translateY(-10px);box-shadow:0 0 25px rgba(34,197,94,0.4);}
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-/* SECCIONES */
-section{padding:100px 60px;max-width:1200px;margin:auto;}
+        /* NAVIGATION */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 4%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+        }
 
-/* PRODUCTOS */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.card{background:#111827;border-radius:20px;overflow:hidden;transition:0.4s;text-align:center;padding-bottom:15px;}
-.card img{width:100%;height:220px;object-fit:cover;}
-.card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 0 30px rgba(34,197,94,0.4);}
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* CONTACTO */
-.contact-box{margin-top:30px;padding:40px;background:#111827;border-radius:20px;text-align:center;}
-.contact-grid{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
-.contact-item{background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;transition:0.3s;}
-.contact-item:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(34,197,94,0.4);}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
 
-/* CARRITO */
-.cart{position:fixed;right:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
-.cart-panel{position:fixed;right:-350px;top:0;width:350px;height:100%;background:#020617;padding:20px;transition:0.4s;z-index:2000;}
-.cart-panel.active{right:0;}
-.cart-header{display:flex;justify-content:space-between;}
-.close-cart{cursor:pointer;font-size:20px;}
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-/* ANIMACION */
-.fly-img{
-position:fixed;
-z-index:3000;
-width:60px;
-height:60px;
-border-radius:10px;
-pointer-events:none;
-transition:all 0.8s ease-in-out;
-}
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: var(--transition);
+            cursor: pointer;
+        }
 
-/* IA */
-.ai-btn{position:fixed;left:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
-.ai-box{position:fixed;left:20px;bottom:90px;width:280px;height:350px;background:#111827;display:none;flex-direction:column;padding:10px;border-radius:10px;}
-.ai-box.active{display:flex;}
-#chat{flex:1;overflow:auto;}
-input{padding:10px;border:none;border-radius:5px;}
-</style>
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .hamburger {
+            width: 24px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--dark-bg);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--dark-bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 8rem 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        /* INFO SECTION */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(34, 197, 94, 0.2);
+            border-color: var(--primary);
+        }
+
+        .info-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* PRODUCTS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid rgba(34, 197, 94, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(34, 197, 94, 0.25);
+            border-color: var(--primary);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* CONTACT */
+        .contact-container {
+            max-width: 800px;
+            margin: 4rem auto 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* CART */
+        .cart-btn {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 1001;
+            border: none;
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.4);
+        }
+
+        .cart-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: var(--dark-bg);
+            padding: 2rem;
+            transition: var(--transition);
+            z-index: 2000;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+
+        .cart-panel.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+        }
+
+        /* FLY ANIMATION */
+        .fly-img {
+            position: fixed;
+            z-index: 3000;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .cart-panel {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        /* UTILITIES */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Navegación principal">
+        <div class="nav-container">
+            <a href="#home" class="logo" aria-label="Inicio SublimArte Pro">SublimArte Pro</a>
+            <ul class="nav-menu" role="menubar">
+                <li><a class="nav-link" href="#home" data-section="home">Inicio</a></li>
+                <li><a class="nav-link" href="#productos" data-section="productos">Productos</a></li>
+                <li><a class="nav-link" href="#contacto" data-section="contacto">Contacto</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Abrir menú móvil" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
 
-<nav>
-<div class="logo">SublimArte</div>
-<div class="menu">
-<a onclick="goHome()">Inicio</a>
-<a onclick="showProductos()">Productos</a>
-<a onclick="showContacto()">Contacto</a>
-</div>
-</nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="text-gradient">Convertimos tus ideas en productos únicos</h1>
+            <p>La sublimación profesional que tus diseños merecen. Calidad premium garantizada.</p>
+            <button class="btn btn-primary" onclick="scrollToInfo()">
+                <span>Explorar Productos</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 5v14l-5-5 1.41-1.41L12 16.17l4.59-4.58L17 10z"/>
+                </svg>
+            </button>
+        </div>
+    </section>
 
-<!-- HOME COMPLETO -->
-<div id="home">
+    <!-- Info Section -->
+    <section class="section">
+        <div class="container">
+            <h2 id="info" class="section-title">¿Qué es la sublimación?</h2>
+            <p style="max-width: 800px; margin: 0 auto 4rem; text-align: center; opacity: 0.9; font-size: 1.125rem;">
+                Técnica de impresión revolucionaria que transfiere diseños vibrantes y duraderos a 
+                tazas, remeras, gorras y más. Colores intensos que perduran en el tiempo.
+            </p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="info-card-icon">🎨</span>
+                    <h3>Diseños Personalizados</h3>
+                    <p>Creamos exactamente lo que imaginas, sin límites creativos.</p>
+                </div>
+                <div class="info-card">
+                    <span class="info-card-icon">🔥</span>
+                    <h3>Alta Durabilidad</h3>
+                    <p>Impresiones que resisten lavados y uso diario intensivo.</p>
+                </div>
+                <div class="info-card">
+                    <span class="info-card-icon">⚡</span>
+                    <h3>Producción Rápida</h3>
+                    <p>Entregas express sin comprometer la calidad profesional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="hero">
-<h1>Convertimos tus ideas en productos únicos</h1>
-<button class="btn" onclick="scrollInfo()">Ver más</button>
-</div>
+    <!-- Products Section -->
+    <section id="productos" class="section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
 
-<div class="info-section" id="info">
-<h2>¿Qué es la sublimación?</h2>
-<p>
-La sublimación es una técnica de impresión que permite transferir diseños a distintos productos como tazas, remeras, gorras y más.
-Se destaca por su durabilidad, calidad y colores vibrantes.
-</p>
+    <!-- Contact Section -->
+    <section id="contacto" class="section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-container">
+                <a href="https://wa.me/541123456789" class="btn btn-primary" target="_blank" rel="noopener">
+                    Iniciar WhatsApp
+                </a>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">📧</span>
+                        <strong>contacto@sublimartepro.com</strong>
+                    </div>
+                    <div class="contact-item">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">📞</span>
+                        <strong>+54 9 11 2345-6789</strong>
+                    </div>
+                    <div class="contact-item">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">📍</span>
+                        <strong>Buenos Aires, Argentina</strong>
+                    </div>
+                    <div class="contact-item">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">📸</span>
+                        <strong>@sublimarte.pro</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="info-cards">
-<div class="info-card">🎨 Diseños personalizados</div>
-<div class="info-card">🔥 Alta calidad y durabilidad</div>
-<div class="info-card">⚡ Producción rápida</div>
-</div>
-</div>
-
-</div>
-
-<!-- PRODUCTOS -->
-<section id="productos" style="display:none;">
-<h2>Productos</h2>
-<div class="grid" id="grid"></div>
-</section>
-
-<!-- CONTACTO -->
-<section id="contacto" style="display:none;">
-<h2>Contacto</h2>
-<div class="contact-box">
-<a href="#" class="btn">WhatsApp</a>
-<div class="contact-grid">
-<div class="contact-item">📧 contacto@sublimartepro.com</div>
-<div class="contact-item">📞 +54 9 11 2345-6789</div>
-<div class="contact-item">📍 Buenos Aires</div>
-<div class="contact-item">📸 @sublimarte.pro</div>
-</div>
-</div>
-</section>
-
-<!-- CARRITO -->
-<div class="cart" onclick="toggleCart()">🛒</div>
-<div class="cart-panel" id="cartPanel">
-<div class="cart-header">
-<h3>Carrito</h3>
-<span class="close-cart" onclick="toggleCart()">✖</span>
-</div>
-<div id="cartItems"></div>
-</div>
-
-<script>
-// NAV
-function goHome(){home.style.display="block";productos.style.display="none";contacto.style.display="none";}
-function showProductos(){home.style.display="none";productos.style.display="block";contacto.style.display="none";}
-function showContacto(){home.style.display="none";productos.style.display="none";contacto.style.display="block";}
-
-// SCROLL
-function scrollInfo(){
-document.getElementById("info").scrollIntoView({behavior:"smooth"});
-}
-
-// PRODUCTOS
-const productosArr=[
-{name:"Taza personalizada",precio:3000,img:"https://decorazonobjetos.com.ar/wp-content/uploads/2024/02/WhatsApp-Image-2022-11-13-at-15.23.40-1-600x797.jpeg"},
-{name:"Remera premium",precio:6000,img:"https://plotter7.com.ar/wp-content/uploads/2019/11/plotter7002-scaled.jpg"},
-{name:"Gorra",precio:4000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5E5BUUrCwdVUFFuipFj7JqQRIGx3ItVjUEg&s"},
-{name:"Almohadón",precio:5000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJXqzIn-rSfn7BqVdSQDadx_u7xhtNVVsfg&s"},
-{name:"Mousepad",precio:2500,img:"https://taino.pe/cdn/shop/files/mouse_pad_20x20_cuadrado_taino.jpg?v=1739569615&width=1946"},
-{name:"Tote bag",precio:3500,img:"https://http2.mlstatic.com/D_978331-MLA73970920725_012024-O.jpg"},
-{name:"Rompecabezas",precio:4500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAkSDX-7OQ3bVqjCbNd25DFpqptROd1iUetA&s"},
-{name:"Llavero",precio:1500,img:"https://http2.mlstatic.com/D_NQ_NP_635313-MLA88368947229_072025-O.webp"}
-];
-
-productosArr.forEach((p,i)=>{
-grid.innerHTML+=`<div class="card">
-<img src="${p.img}">
-<h3>${p.name}</h3>
-<p>$${p.precio}</p>
-<button class="btn" onclick="add(${i})">Agregar</button>
-</div>`;
-});
-
-// CARRITO + ANIMACION
-let cart=[];
-
-function add(i){
-let img = document.querySelectorAll(".card img")[i];
-let rect = img.getBoundingClientRect();
-
-let clone = img.cloneNode(true);
-clone.classList.add("fly-img");
-clone.style.top = rect.top + "px";
-clone.style.left = rect.left + "px";
-document.body.appendChild(clone);
-
-let cartRect = document.querySelector(".cart").getBoundingClientRect();
-
-setTimeout(()=>{
-clone.style.top = cartRect.top + "px";
-clone.style.left = cartRect.left + "px";
-clone.style.width = "20px";
-clone.style.height = "20px";
-clone.style.opacity = "0.5";
-},10);
-
-setTimeout(()=>{clone.remove();},800);
-
-// lógica carrito
-let existing=cart.find(p=>p.name===productosArr[i].name);
-if(existing){existing.qty++;}
-else{cart.push({...productosArr[i],qty:1});}
-render();
-}
-
-function render(){
-cartItems.innerHTML="";
-cart.forEach((p,i)=>{
-cartItems.innerHTML+=`
-<div style="display:flex;justify-content:space-between;margin:10px 0;">
-<span>${p.name} x ${p.qty}</span>
-<button onclick="removeItem(${i})">✖</button>
-</div>`;
-});
-}
-
-function removeItem(i){cart.splice(i,1);render();}
-function toggleCart(){cartPanel.classList.toggle("active");}
-</script>
-
-</body>
-</html>
+    <!-- Cart Button -->
+    <button class="cart-btn" onclick="toggleCart()" aria-label="Ver carrito">
+        🛒
+        <span class="sr-only">Carrito de compras</span>
+        <span id="cartCounter" style="position: absolute
