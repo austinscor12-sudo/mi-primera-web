@@ -8,7 +8,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#020617;color:white;overflow-x:hidden;}
+body{background:#020617;color:white;overflow-x:hidden;scroll-behavior:smooth;}
 
 /* NAV */
 nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding:20px 40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);z-index:1000;}
@@ -23,56 +23,71 @@ nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding
 .btn{background:#22c55e;padding:14px 30px;border-radius:30px;cursor:pointer;border:none;margin-top:20px;color:white;transition:0.3s;}
 .btn:hover{transform:scale(1.08);box-shadow:0 0 20px #22c55e;}
 
+/* INFO EXTRA (NUEVO) */
+.info-section{
+padding:100px 60px;
+background:#020617;
+text-align:center;
+}
+.info-section h2{
+font-size:40px;
+margin-bottom:20px;
+}
+.info-section p{
+max-width:800px;
+margin:auto;
+opacity:0.8;
+line-height:1.6;
+}
+.info-cards{
+margin-top:50px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+.info-card{
+background:#111827;
+padding:25px;
+border-radius:15px;
+transition:0.4s;
+}
+.info-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px rgba(34,197,94,0.4);
+}
+
 /* SECCIONES */
 section{padding:100px 60px;max-width:1200px;margin:auto;}
 
 /* PRODUCTOS */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-.card{background:#111827;border-radius:20px;overflow:hidden;transition:0.4s;}
+.card{background:#111827;border-radius:20px;overflow:hidden;transition:0.4s;text-align:center;padding-bottom:15px;}
 .card img{width:100%;height:220px;object-fit:cover;}
 .card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 0 30px rgba(34,197,94,0.4);}
 
-/* HOME INFO */
-.home-info{
-margin-top:60px;
+/* CONTACTO MEJORADO */
+.contact-box{
+margin-top:30px;
+padding:40px;
+background:#111827;
+border-radius:20px;
+text-align:center;
+}
+.contact-grid{
+margin-top:30px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
-width:80%;
 }
-
-.home-card{
+.contact-item{
 background:rgba(255,255,255,0.05);
 padding:20px;
 border-radius:15px;
-transition:0.4s;
-transform-style:preserve-3d;
+transition:0.3s;
 }
-
-.home-card:hover{
-transform:rotateY(10deg) scale(1.05);
-box-shadow:0 0 25px rgba(59,130,246,0.4);
-}
-
-/* FADE AL SCROLL */
-.fade-scroll{opacity:0; transform:translateY(20px); transition:all 0.6s ease-out;}
-
-/* CONTACTO */
-.contact-box{
-margin-top:30px;
-padding:30px;
-background:rgba(255,255,255,0.05);
-border-radius:20px;
-text-align:center;
-transition:0.4s;
-}
-.contact-box:hover{
-transform:scale(1.03);
-box-shadow:0 0 40px rgba(34,197,94,0.4);
-}
-.contact-info{
-margin-top:20px;
-line-height:1.8;
+.contact-item:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(34,197,94,0.4);
 }
 
 /* CARRITO */
@@ -115,14 +130,21 @@ input{padding:10px;border:none;border-radius:5px;}
 <!-- HERO -->
 <div id="home" class="hero">
 <h1>Convertimos tus ideas en productos únicos</h1>
-<button class="btn" onclick="showProductos()">Comprar ahora</button>
+<button class="btn" onclick="scrollInfo()">Ver más</button>
+</div>
 
-<!-- INFO ANIMADA -->
-<div class="home-info">
-<div class="home-card fade-scroll">🧵 Textiles</div>
-<div class="home-card fade-scroll">🎁 Regalos</div>
-<div class="home-card fade-scroll">🏠 Decoración</div>
-<div class="home-card fade-scroll">💼 Publicidad</div>
+<!-- NUEVA INFO -->
+<div class="info-section" id="info">
+<h2>¿Qué es la sublimación?</h2>
+<p>
+La sublimación es una técnica de impresión que permite transferir diseños a distintos productos como tazas, remeras, gorras y más. 
+Se destaca por su durabilidad, calidad y colores vibrantes.
+</p>
+
+<div class="info-cards">
+<div class="info-card">🎨 Diseños personalizados</div>
+<div class="info-card">🔥 Alta calidad y durabilidad</div>
+<div class="info-card">⚡ Producción rápida</div>
 </div>
 </div>
 
@@ -136,15 +158,16 @@ input{padding:10px;border:none;border-radius:5px;}
 <section id="contacto" style="display:none;">
 <h2>Contacto</h2>
 <div class="contact-box">
-<p>Escribinos 👇</p>
+
 <a href="#" class="btn">WhatsApp</a>
 
-<div class="contact-info">
-<p>📧 contacto@sublimartepro.com</p>
-<p>📞 +54 9 11 2345-6789</p>
-<p>📍 Buenos Aires</p>
-<p>📸 @sublimarte.pro</p>
+<div class="contact-grid">
+<div class="contact-item">📧 contacto@sublimartepro.com</div>
+<div class="contact-item">📞 +54 9 11 2345-6789</div>
+<div class="contact-item">📍 Buenos Aires</div>
+<div class="contact-item">📸 @sublimarte.pro</div>
 </div>
+
 </div>
 </section>
 
@@ -171,6 +194,11 @@ function goHome(){home.style.display="flex";productos.style.display="none";conta
 function showProductos(){home.style.display="none";productos.style.display="block";contacto.style.display="none";}
 function showContacto(){home.style.display="none";productos.style.display="none";contacto.style.display="block";}
 
+// SCROLL INFO
+function scrollInfo(){
+document.getElementById("info").scrollIntoView({behavior:"smooth"});
+}
+
 // PRODUCTOS
 const productosArr=[
 {name:"Taza personalizada",precio:3000,img:"https://decorazonobjetos.com.ar/wp-content/uploads/2024/02/WhatsApp-Image-2022-11-13-at-15.23.40-1-600x797.jpeg"},
@@ -192,25 +220,23 @@ grid.innerHTML+=`<div class="card">
 </div>`;
 });
 
-// CARRITO CON CANTIDAD Y ELIMINAR
+// CARRITO
 let cart=[];
 function render(){
-cartItems.innerHTML = "";
+cartItems.innerHTML="";
 cart.forEach((p,i)=>{
-const itemDiv = document.createElement("div");
-itemDiv.style.display="flex"; 
-itemDiv.style.justifyContent="space-between"; 
-itemDiv.style.margin="10px 0";
-itemDiv.innerHTML = `<span>${p.name} x ${p.qty}</span>
-<button onclick="removeItem(${i})" style="background:red;color:white;border:none;border-radius:5px;padding:2px 6px;cursor:pointer;">✖</button>`;
-cartItems.appendChild(itemDiv);
+cartItems.innerHTML+=`
+<div style="display:flex;justify-content:space-between;margin:10px 0;">
+<span>${p.name} x ${p.qty}</span>
+<button onclick="removeItem(${i})">✖</button>
+</div>`;
 });
 }
 
 function add(i){
-let existing = cart.find(p=>p.name===productosArr[i].name);
+let existing=cart.find(p=>p.name===productosArr[i].name);
 if(existing){existing.qty++;}
-else{cart.push({...productosArr[i], qty:1});}
+else{cart.push({...productosArr[i],qty:1});}
 render();
 }
 
@@ -220,18 +246,6 @@ render();
 }
 
 function toggleCart(){cartPanel.classList.toggle("active");}
-
-// SCROLL ANIMATION INFO HOME
-const fadeElements = document.querySelectorAll('.fade-scroll');
-window.addEventListener('scroll',()=>{
-fadeElements.forEach(el=>{
-const rect = el.getBoundingClientRect();
-if(rect.top < window.innerHeight - 50){
-el.style.opacity = 1;
-el.style.transform = "translateY(0)";
-}
-});
-});
 
 // IA
 function toggleAI(){aiBox.classList.toggle("active");}
