@@ -4,17 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Sitio Web</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Fuente moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-body {
-  font-family: 'Poppins', sans-serif;
-}
+<body>
 
   <!-- HEADER -->
-  <header>
+  <header class="header">
     <div class="logo">MiMarca</div>
     <nav>
-      <ul>
+      <ul class="nav-links">
         <li><a href="#home">Inicio</a></li>
         <li><a href="#about">Nosotros</a></li>
         <li><a href="#blog">Blog</a></li>
@@ -23,7 +26,7 @@ body {
     </nav>
   </header>
 
-  <!-- HERO / HOME -->
+  <!-- HERO -->
   <section id="home" class="hero">
     <h1>Bienvenido a Mi Sitio</h1>
     <p>Soluciones modernas para tu negocio</p>
@@ -31,20 +34,20 @@ body {
   </section>
 
   <!-- ABOUT -->
-  <section id="about">
+  <section id="about" class="section">
     <h2>Sobre Nosotros</h2>
     <p>Somos una empresa dedicada a ofrecer servicios digitales de alta calidad.</p>
   </section>
 
   <!-- BLOG -->
-  <section id="blog">
+  <section id="blog" class="section">
     <h2>Blog</h2>
     <div class="posts">
-      <article>
+      <article class="card">
         <h3>Artículo 1</h3>
         <p>Contenido interesante para mejorar tu SEO.</p>
       </article>
-      <article>
+      <article class="card">
         <h3>Artículo 2</h3>
         <p>Consejos útiles para tu negocio online.</p>
       </article>
@@ -52,9 +55,10 @@ body {
   </section>
 
   <!-- CONTACT -->
-  <section id="contact">
+  <section id="contact" class="section">
     <h2>Contacto</h2>
-    <form>
+
+    <form class="form">
       <input type="text" placeholder="Tu nombre" required>
       <input type="email" placeholder="Tu email" required>
       <textarea placeholder="Tu mensaje" required></textarea>
@@ -70,12 +74,12 @@ body {
   <!-- FOOTER -->
   <footer>
     <p>© 2026 MiMarca</p>
-    <div class="social">
+    <div>
       <a href="#">Instagram</a>
       <a href="#">Facebook</a>
       <a href="#">Twitter</a>
     </div>
-    <div class="legal">
+    <div>
       <a href="#">Privacidad</a>
       <a href="#">Términos</a>
     </div>
