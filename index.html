@@ -5,19 +5,172 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Sitio Web</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Fuente moderna -->
+  <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #111;
+      color: white;
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00c6ff;
+    }
+
+    /* HERO */
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+    }
+
+    .hero p {
+      margin: 15px 0;
+    }
+
+    .btn {
+      background: white;
+      color: #007bff;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #eee;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    /* BLOG */
+    .posts {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* FORM */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer a {
+      color: #00c6ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- HEADER -->
-  <header class="header">
+  <header>
     <div class="logo">MiMarca</div>
     <nav>
-      <ul class="nav-links">
+      <ul>
         <li><a href="#home">Inicio</a></li>
         <li><a href="#about">Nosotros</a></li>
         <li><a href="#blog">Blog</a></li>
@@ -33,42 +186,40 @@
     <a href="#contact" class="btn">Contactar</a>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
+  <!-- SOBRE NOSOTROS -->
+  <section id="about">
     <h2>Sobre Nosotros</h2>
     <p>Somos una empresa dedicada a ofrecer servicios digitales de alta calidad.</p>
   </section>
 
   <!-- BLOG -->
-  <section id="blog" class="section">
+  <section id="blog">
     <h2>Blog</h2>
     <div class="posts">
-      <article class="card">
+      <div class="card">
         <h3>Artículo 1</h3>
         <p>Contenido interesante para mejorar tu SEO.</p>
-      </article>
-      <article class="card">
+      </div>
+      <div class="card">
         <h3>Artículo 2</h3>
         <p>Consejos útiles para tu negocio online.</p>
-      </article>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section">
+  <!-- CONTACTO -->
+  <section id="contact">
     <h2>Contacto</h2>
 
-    <form class="form">
+    <form>
       <input type="text" placeholder="Tu nombre" required>
       <input type="email" placeholder="Tu email" required>
       <textarea placeholder="Tu mensaje" required></textarea>
       <button type="submit">Enviar</button>
     </form>
 
-    <div class="info">
-      <p>Email: contacto@misitio.com</p>
-      <p>Tel: +54 123 456 789</p>
-    </div>
+    <p>Email: contacto@misitio.com</p>
+    <p>Tel: +54 123 456 789</p>
   </section>
 
   <!-- FOOTER -->
