@@ -1,240 +1,232 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Sitio Web</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SublimArte Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Fuente -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#020617;color:white;overflow-x:hidden;scroll-behavior:smooth;}
 
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* NAV */
+nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding:20px 40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);z-index:1000;}
+.logo{color:#22c55e;font-weight:600;font-size:20px;}
+.menu{display:flex;gap:25px;}
+.menu a{cursor:pointer;text-decoration:none;color:white;opacity:0.8;}
+.menu a:hover{opacity:1;}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f5f7fa;
-      color: #333;
-    }
+/* HERO */
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#22c55e,#3b82f6);}
+.hero h1{font-size:60px;max-width:600px;}
+.btn{background:#22c55e;padding:14px 30px;border-radius:30px;cursor:pointer;border:none;margin-top:20px;color:white;transition:0.3s;}
+.btn:hover{transform:scale(1.08);box-shadow:0 0 20px #22c55e;}
 
-    /* HEADER */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #111;
-      color: white;
-      padding: 15px 40px;
-      position: sticky;
-      top: 0;
-    }
+/* INFO */
+.info-section{
+padding:100px 60px;
+background:#020617;
+text-align:center;
+}
+.info-section h2{font-size:40px;margin-bottom:20px;}
+.info-section p{max-width:800px;margin:auto;opacity:0.8;line-height:1.6;}
+.info-cards{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.info-card{background:#111827;padding:25px;border-radius:15px;transition:0.4s;}
+.info-card:hover{transform:translateY(-10px);box-shadow:0 0 25px rgba(34,197,94,0.4);}
 
-    .logo {
-      font-weight: 600;
-      font-size: 20px;
-    }
+/* SECCIONES */
+section{padding:100px 60px;max-width:1200px;margin:auto;}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
+/* PRODUCTOS */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.card{background:#111827;border-radius:20px;overflow:hidden;transition:0.4s;text-align:center;padding-bottom:15px;}
+.card img{width:100%;height:220px;object-fit:cover;}
+.card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 0 30px rgba(34,197,94,0.4);}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+/* CONTACTO */
+.contact-box{margin-top:30px;padding:40px;background:#111827;border-radius:20px;text-align:center;}
+.contact-grid{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.contact-item{background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;transition:0.3s;}
+.contact-item:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(34,197,94,0.4);}
 
-    nav a:hover {
-      color: #00c6ff;
-    }
+/* CARRITO */
+.cart{position:fixed;right:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
+.cart-panel{position:fixed;right:-350px;top:0;width:350px;height:100%;background:#020617;padding:20px;transition:0.4s;z-index:2000;}
+.cart-panel.active{right:0;}
+.cart-header{display:flex;justify-content:space-between;}
+.close-cart{cursor:pointer;font-size:20px;}
 
-    /* HERO */
-    .hero {
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(to right, #007bff, #00c6ff);
-      color: white;
-      text-align: center;
-    }
+/* ANIMACION */
+.fly-img{
+position:fixed;
+z-index:3000;
+width:60px;
+height:60px;
+border-radius:10px;
+pointer-events:none;
+transition:all 0.8s ease-in-out;
+}
 
-    .hero h1 {
-      font-size: 42px;
-    }
-
-    .hero p {
-      margin: 15px 0;
-    }
-
-    .btn {
-      background: white;
-      color: #007bff;
-      padding: 12px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #eee;
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    /* BLOG */
-    .posts {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      width: 250px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* FORM */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 400px;
-      margin: 20px auto;
-    }
-
-    input, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #111;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    footer a {
-      color: #00c6ff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-      }
-    }
-  </style>
+/* IA */
+.ai-btn{position:fixed;left:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
+.ai-box{position:fixed;left:20px;bottom:90px;width:280px;height:350px;background:#111827;display:none;flex-direction:column;padding:10px;border-radius:10px;}
+.ai-box.active{display:flex;}
+#chat{flex:1;overflow:auto;}
+input{padding:10px;border:none;border-radius:5px;}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">MiMarca</div>
-    <nav>
-      <ul>
-        <li><a href="#home">Inicio</a></li>
-        <li><a href="#about">Nosotros</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+<nav>
+<div class="logo">SublimArte</div>
+<div class="menu">
+<a onclick="goHome()">Inicio</a>
+<a onclick="showProductos()">Productos</a>
+<a onclick="showContacto()">Contacto</a>
+</div>
+</nav>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <h1>Bienvenido a Mi Sitio</h1>
-    <p>Soluciones modernas para tu negocio</p>
-    <a href="#contact" class="btn">Contactar</a>
-  </section>
+<!-- HOME COMPLETO -->
+<div id="home">
 
-  <!-- SOBRE NOSOTROS -->
-  <section id="about">
-    <h2>Sobre Nosotros</h2>
-    <p>Somos una empresa dedicada a ofrecer servicios digitales de alta calidad.</p>
-  </section>
+<div class="hero">
+<h1>Convertimos tus ideas en productos únicos</h1>
+<button class="btn" onclick="scrollInfo()">Ver más</button>
+</div>
 
-  <!-- BLOG -->
-  <section id="blog">
-    <h2>Blog</h2>
-    <div class="posts">
-      <div class="card">
-        <h3>Artículo 1</h3>
-        <p>Contenido interesante para mejorar tu SEO.</p>
-      </div>
-      <div class="card">
-        <h3>Artículo 2</h3>
-        <p>Consejos útiles para tu negocio online.</p>
-      </div>
-    </div>
-  </section>
+<div class="info-section" id="info">
+<h2>¿Qué es la sublimación?</h2>
+<p>
+La sublimación es una técnica de impresión que permite transferir diseños a distintos productos como tazas, remeras, gorras y más.
+Se destaca por su durabilidad, calidad y colores vibrantes.
+</p>
 
-  <!-- CONTACTO -->
-  <section id="contact">
-    <h2>Contacto</h2>
+<div class="info-cards">
+<div class="info-card">🎨 Diseños personalizados</div>
+<div class="info-card">🔥 Alta calidad y durabilidad</div>
+<div class="info-card">⚡ Producción rápida</div>
+</div>
+</div>
 
-    <form>
-      <input type="text" placeholder="Tu nombre" required>
-      <input type="email" placeholder="Tu email" required>
-      <textarea placeholder="Tu mensaje" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
+</div>
 
-    <p>Email: contacto@misitio.com</p>
-    <p>Tel: +54 123 456 789</p>
-  </section>
+<!-- PRODUCTOS -->
+<section id="productos" style="display:none;">
+<h2>Productos</h2>
+<div class="grid" id="grid"></div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 MiMarca</p>
-    <div>
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-    </div>
-    <div>
-      <a href="#">Privacidad</a>
-      <a href="#">Términos</a>
-    </div>
-  </footer>
+<!-- CONTACTO -->
+<section id="contacto" style="display:none;">
+<h2>Contacto</h2>
+<div class="contact-box">
+<a href="#" class="btn">WhatsApp</a>
+<div class="contact-grid">
+<div class="contact-item">📧 contacto@sublimartepro.com</div>
+<div class="contact-item">📞 +54 9 11 2345-6789</div>
+<div class="contact-item">📍 Buenos Aires</div>
+<div class="contact-item">📸 @sublimarte.pro</div>
+</div>
+</div>
+</section>
+
+<!-- CARRITO -->
+<div class="cart" onclick="toggleCart()">🛒</div>
+<div class="cart-panel" id="cartPanel">
+<div class="cart-header">
+<h3>Carrito</h3>
+<span class="close-cart" onclick="toggleCart()">✖</span>
+</div>
+<div id="cartItems"></div>
+</div>
+
+<script>
+// NAV
+function goHome(){home.style.display="block";productos.style.display="none";contacto.style.display="none";}
+function showProductos(){home.style.display="none";productos.style.display="block";contacto.style.display="none";}
+function showContacto(){home.style.display="none";productos.style.display="none";contacto.style.display="block";}
+
+// SCROLL
+function scrollInfo(){
+document.getElementById("info").scrollIntoView({behavior:"smooth"});
+}
+
+// PRODUCTOS
+const productosArr=[
+{name:"Taza personalizada",precio:3000,img:"https://decorazonobjetos.com.ar/wp-content/uploads/2024/02/WhatsApp-Image-2022-11-13-at-15.23.40-1-600x797.jpeg"},
+{name:"Remera premium",precio:6000,img:"https://plotter7.com.ar/wp-content/uploads/2019/11/plotter7002-scaled.jpg"},
+{name:"Gorra",precio:4000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5E5BUUrCwdVUFFuipFj7JqQRIGx3ItVjUEg&s"},
+{name:"Almohadón",precio:5000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJXqzIn-rSfn7BqVdSQDadx_u7xhtNVVsfg&s"},
+{name:"Mousepad",precio:2500,img:"https://taino.pe/cdn/shop/files/mouse_pad_20x20_cuadrado_taino.jpg?v=1739569615&width=1946"},
+{name:"Tote bag",precio:3500,img:"https://http2.mlstatic.com/D_978331-MLA73970920725_012024-O.jpg"},
+{name:"Rompecabezas",precio:4500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAkSDX-7OQ3bVqjCbNd25DFpqptROd1iUetA&s"},
+{name:"Llavero",precio:1500,img:"https://http2.mlstatic.com/D_NQ_NP_635313-MLA88368947229_072025-O.webp"}
+];
+
+productosArr.forEach((p,i)=>{
+grid.innerHTML+=`<div class="card">
+<img src="${p.img}">
+<h3>${p.name}</h3>
+<p>$${p.precio}</p>
+<button class="btn" onclick="add(${i})">Agregar</button>
+</div>`;
+});
+
+// CARRITO + ANIMACION
+let cart=[];
+
+function add(i){
+let img = document.querySelectorAll(".card img")[i];
+let rect = img.getBoundingClientRect();
+
+let clone = img.cloneNode(true);
+clone.classList.add("fly-img");
+clone.style.top = rect.top + "px";
+clone.style.left = rect.left + "px";
+document.body.appendChild(clone);
+
+let cartRect = document.querySelector(".cart").getBoundingClientRect();
+
+setTimeout(()=>{
+clone.style.top = cartRect.top + "px";
+clone.style.left = cartRect.left + "px";
+clone.style.width = "20px";
+clone.style.height = "20px";
+clone.style.opacity = "0.5";
+},10);
+
+setTimeout(()=>{clone.remove();},800);
+
+// lógica carrito
+let existing=cart.find(p=>p.name===productosArr[i].name);
+if(existing){existing.qty++;}
+else{cart.push({...productosArr[i],qty:1});}
+render();
+}
+
+function render(){
+cartItems.innerHTML="";
+cart.forEach((p,i)=>{
+cartItems.innerHTML+=`
+<div style="display:flex;justify-content:space-between;margin:10px 0;">
+<span>${p.name} x ${p.qty}</span>
+<button onclick="removeItem(${i})">✖</button>
+</div>`;
+});
+}
+
+function removeItem(i){cart.splice(i,1);render();}
+function toggleCart(){cartPanel.classList.toggle("active");}
+</script>
 
 </body>
 </html>
+
+
+asi esta mi codigo, como lo de arriba
+
+aca te paso un link: https://www.thelogoshop.com.ar/bordados-industriales/?gad_source=1&gad_campaignid=22501726935&gbraid=0AAAAABiPAvsiGmQfP7WUx4fXhx7lRw6WI&gclid=CjwKCAjw1tLOBhAMEiwAiPkRHqDH1FAJ_V7MLOvS87EIZg0gK93gBmQ8aYF8qDgmj9XQ4r9K3LafyRoCA7MQAvD_BwE
+
+un ejemplo de como quiero, no igual pero viste todo lo que tiene? sin errores y todo
