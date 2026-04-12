@@ -9,70 +9,36 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#020617;color:white;overflow-x:hidden;scroll-behavior:smooth;}
-
-/* NAV */
 nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding:20px 40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);z-index:1000;}
 .logo{color:#22c55e;font-weight:600;font-size:20px;}
 .menu{display:flex;gap:25px;}
 .menu a{cursor:pointer;text-decoration:none;color:white;opacity:0.8;}
 .menu a:hover{opacity:1;}
-
-/* HERO */
 .hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#22c55e,#3b82f6);}
 .hero h1{font-size:60px;max-width:600px;}
 .btn{background:#22c55e;padding:14px 30px;border-radius:30px;cursor:pointer;border:none;margin-top:20px;color:white;transition:0.3s;}
 .btn:hover{transform:scale(1.08);box-shadow:0 0 20px #22c55e;}
-
-/* INFO */
-.info-section{
-padding:100px 60px;
-background:#020617;
-text-align:center;
-}
+.info-section{padding:100px 60px;background:#020617;text-align:center;}
 .info-section h2{font-size:40px;margin-bottom:20px;}
 .info-section p{max-width:800px;margin:auto;opacity:0.8;line-height:1.6;}
 .info-cards{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
 .info-card{background:#111827;padding:25px;border-radius:15px;transition:0.4s;}
 .info-card:hover{transform:translateY(-10px);box-shadow:0 0 25px rgba(34,197,94,0.4);}
-
-/* SECCIONES */
 section{padding:100px 60px;max-width:1200px;margin:auto;}
-
-/* PRODUCTOS */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
 .card{background:#111827;border-radius:20px;overflow:hidden;transition:0.4s;text-align:center;padding-bottom:15px;}
 .card img{width:100%;height:220px;object-fit:cover;}
 .card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 0 30px rgba(34,197,94,0.4);}
-
-/* CONTACTO */
 .contact-box{margin-top:30px;padding:40px;background:#111827;border-radius:20px;text-align:center;}
 .contact-grid{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
 .contact-item{background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;transition:0.3s;}
 .contact-item:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(34,197,94,0.4);}
-
-/* CARRITO */
 .cart{position:fixed;right:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
 .cart-panel{position:fixed;right:-350px;top:0;width:350px;height:100%;background:#020617;padding:20px;transition:0.4s;z-index:2000;}
 .cart-panel.active{right:0;}
 .cart-header{display:flex;justify-content:space-between;}
 .close-cart{cursor:pointer;font-size:20px;}
-
-/* ANIMACION */
-.fly-img{
-position:fixed;
-z-index:3000;
-width:60px;
-height:60px;
-border-radius:10px;
-pointer-events:none;
-transition:all 0.8s ease-in-out;
-}
-
-/* IA */
-.ai-btn{position:fixed;left:20px;bottom:20px;background:#22c55e;padding:15px;border-radius:50%;cursor:pointer;}
-.ai-box{position:fixed;left:20px;bottom:90px;width:280px;height:350px;background:#111827;display:none;flex-direction:column;padding:10px;border-radius:10px;}
-.ai-box.active{display:flex;}
-#chat{flex:1;overflow:auto;}
+.fly-img{position:fixed;z-index:3000;width:60px;height:60px;border-radius:10px;pointer-events:none;transition:all 0.8s ease-in-out;}
 input{padding:10px;border:none;border-radius:5px;}
 </style>
 </head>
@@ -92,9 +58,7 @@ SublimArte
 </div>
 </nav>
 
-<!-- HOME COMPLETO -->
 <div id="home">
-
 <div class="hero">
 <h1>Convertimos tus ideas en productos únicos</h1>
 <button class="btn" onclick="scrollInfo()">Ver más</button>
@@ -102,27 +66,20 @@ SublimArte
 
 <div class="info-section" id="info">
 <h2>¿Qué es la sublimación?</h2>
-<p>
-La sublimación es una técnica de impresión que permite transferir diseños a distintos productos como tazas, remeras, gorras y más.
-Se destaca por su durabilidad, calidad y colores vibrantes.
-</p>
-
+<p>La sublimación es una técnica de impresión...</p>
 <div class="info-cards">
 <div class="info-card">🎨 Diseños personalizados</div>
-<div class="info-card">🔥 Alta calidad y durabilidad</div>
+<div class="info-card">🔥 Alta calidad</div>
 <div class="info-card">⚡ Producción rápida</div>
 </div>
 </div>
-
 </div>
 
-<!-- PRODUCTOS -->
 <section id="productos" style="display:none;">
 <h2>Productos</h2>
 <div class="grid" id="grid"></div>
 </section>
 
-<!-- CONTACTO -->
 <section id="contacto" style="display:none;">
 <h2>Contacto</h2>
 <div class="contact-box">
@@ -136,7 +93,6 @@ Se destaca por su durabilidad, calidad y colores vibrantes.
 </div>
 </section>
 
-<!-- CARRITO -->
 <div class="cart" onclick="toggleCart()">🛒</div>
 <div class="cart-panel" id="cartPanel">
 <div class="cart-header">
@@ -146,101 +102,56 @@ Se destaca por su durabilidad, calidad y colores vibrantes.
 <div id="cartItems"></div>
 </div>
 
+<!-- LOGIN UI -->
+<div id="authBox" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000000d9;display:flex;justify-content:center;align-items:center;z-index:5000;">
+<div style="background:#111827;padding:30px;border-radius:10px;width:300px;text-align:center;">
+<h2>Iniciar sesión</h2>
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Contraseña">
+<button onclick="login()" class="btn">Entrar</button>
+<button onclick="register()" class="btn">Registrarse</button>
+</div>
+</div>
+
 <script>
-// NAV
-function goHome(){home.style.display="block";productos.style.display="none";contacto.style.display="none";}
-function showProductos(){home.style.display="none";productos.style.display="block";contacto.style.display="none";}
-function showContacto(){home.style.display="none";productos.style.display="none";contacto.style.display="block";}
+// LOGIN / REGISTER
+async function login(){
+const email=document.getElementById("email").value;
+const password=document.getElementById("password").value;
 
-// SCROLL
-function scrollInfo(){
-document.getElementById("info").scrollIntoView({behavior:"smooth"});
+const res=await fetch("http://localhost:3000/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email,password})});
+const data=await res.json();
+
+if(data.token){
+localStorage.setItem("token",data.token);
+location.reload();
+}else{alert("Error");}
 }
 
-// PRODUCTOS
-const productosArr=[
-{name:"Taza personalizada",precio:3000,img:"https://decorazonobjetos.com.ar/wp-content/uploads/2024/02/WhatsApp-Image-2022-11-13-at-15.23.40-1-600x797.jpeg"},
-{name:"Remera premium",precio:6000,img:"https://plotter7.com.ar/wp-content/uploads/2019/11/plotter7002-scaled.jpg"},
-{name:"Gorra",precio:4000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5E5BUUrCwdVUFFuipFj7JqQRIGx3ItVjUEg&s"},
-{name:"Almohadón",precio:5000,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeJXqzIn-rSfn7BqVdSQDadx_u7xhtNVVsfg&s"},
-{name:"Mousepad",precio:2500,img:"https://taino.pe/cdn/shop/files/mouse_pad_20x20_cuadrado_taino.jpg?v=1739569615&width=1946"},
-{name:"Tote bag",precio:3500,img:"https://http2.mlstatic.com/D_978331-MLA73970920725_012024-O.jpg"},
-{name:"Rompecabezas",precio:4500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAkSDX-7OQ3bVqjCbNd25DFpqptROd1iUetA&s"},
-{name:"Llavero",precio:1500,img:"https://http2.mlstatic.com/D_NQ_NP_635313-MLA88368947229_072025-O.webp"}
-];
+async function register(){
+const email=document.getElementById("email").value;
+const password=document.getElementById("password").value;
 
-productosArr.forEach((p,i)=>{
-grid.innerHTML+=`<div class="card">
-<img src="${p.img}">
-<h3>${p.name}</h3>
-<p>$${p.precio}</p>
-<button class="btn" onclick="add(${i})">Agregar</button>
-</div>`;
+await fetch("http://localhost:3000/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email,password})});
+alert("Registrado, ahora iniciá sesión");
+}
+
+// VERIFICAR LOGIN
+document.addEventListener("DOMContentLoaded",()=>{
+const token=localStorage.getItem("token");
+if(token){
+userStatus.innerText="🟢 Logueado";
+authBox.style.display="none";
+}else{
+userStatus.innerText="🔴 No logueado";
+authBox.style.display="flex";
+}
 });
 
-// 🔐 VERIFICAR LOGIN
-document.addEventListener("DOMContentLoaded", () => {
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    document.getElementById("userStatus").innerText = "🟢 Logueado";
-  } else {
-    document.getElementById("userStatus").innerText = "🔴 No logueado";
-  }
-});
-
-// 🚪 LOGOUT
 function logout(){
-  localStorage.removeItem("token");
-  alert("Sesión cerrada");
-  location.reload();
+localStorage.removeItem("token");
+location.reload();
 }
-
-// CARRITO + ANIMACION
-let cart=[];
-
-function add(i){
-let img = document.querySelectorAll(".card img")[i];
-let rect = img.getBoundingClientRect();
-
-let clone = img.cloneNode(true);
-clone.classList.add("fly-img");
-clone.style.top = rect.top + "px";
-clone.style.left = rect.left + "px";
-document.body.appendChild(clone);
-
-let cartRect = document.querySelector(".cart").getBoundingClientRect();
-
-setTimeout(()=>{
-clone.style.top = cartRect.top + "px";
-clone.style.left = cartRect.left + "px";
-clone.style.width = "20px";
-clone.style.height = "20px";
-clone.style.opacity = "0.5";
-},10);
-
-setTimeout(()=>{clone.remove();},800);
-
-// lógica carrito
-let existing=cart.find(p=>p.name===productosArr[i].name);
-if(existing){existing.qty++;}
-else{cart.push({...productosArr[i],qty:1});}
-render();
-}
-
-function render(){
-cartItems.innerHTML="";
-cart.forEach((p,i)=>{
-cartItems.innerHTML+=`
-<div style="display:flex;justify-content:space-between;margin:10px 0;">
-<span>${p.name} x ${p.qty}</span>
-<button onclick="removeItem(${i})">✖</button>
-</div>`;
-});
-}
-
-function removeItem(i){cart.splice(i,1);render();}
-function toggleCart(){cartPanel.classList.toggle("active");}
 </script>
 
 </body>
