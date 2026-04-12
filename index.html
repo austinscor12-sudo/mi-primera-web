@@ -80,7 +80,11 @@ input{padding:10px;border:none;border-radius:5px;}
 <body>
 
 <nav>
-<div class="logo">SublimArte</div>
+<div class="logo">
+SublimArte
+<span id="userStatus" style="margin-left:10px;font-size:14px;"></span>
+<button onclick="logout()" style="margin-left:10px;padding:5px 10px;border:none;border-radius:5px;cursor:pointer;">Salir</button>
+</div>
 <div class="menu">
 <a onclick="goHome()">Inicio</a>
 <a onclick="showProductos()">Productos</a>
@@ -173,6 +177,22 @@ grid.innerHTML+=`<div class="card">
 <button class="btn" onclick="add(${i})">Agregar</button>
 </div>`;
 });
+
+// 🔐 VERIFICAR LOGIN
+const token = localStorage.getItem("token");
+
+if (token) {
+  document.getElementById("userStatus").innerText = "🟢 Logueado";
+} else {
+  document.getElementById("userStatus").innerText = "🔴 No logueado";
+}
+
+// 🚪 LOGOUT
+function logout(){
+  localStorage.removeItem("token");
+  alert("Sesión cerrada");
+  location.reload();
+}
 
 // CARRITO + ANIMACION
 let cart=[];
