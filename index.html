@@ -179,13 +179,15 @@ grid.innerHTML+=`<div class="card">
 });
 
 // 🔐 VERIFICAR LOGIN
-const token = localStorage.getItem("token");
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
 
-if (token) {
-  document.getElementById("userStatus").innerText = "🟢 Logueado";
-} else {
-  document.getElementById("userStatus").innerText = "🔴 No logueado";
-}
+  if (token) {
+    document.getElementById("userStatus").innerText = "🟢 Logueado";
+  } else {
+    document.getElementById("userStatus").innerText = "🔴 No logueado";
+  }
+});
 
 // 🚪 LOGOUT
 function logout(){
