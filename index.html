@@ -642,6 +642,111 @@
     .sticker-photo-badge strong { color: #fff; }
     .sticker-photo-badge span { color: var(--cyan); font-weight: 900; }
 
+    /* Video destacado */
+    .video-feature {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(39,217,195,.18), transparent 28rem),
+        radial-gradient(circle at 88% 60%, rgba(28,120,255,.18), transparent 30rem),
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
+      border-block: 1px solid rgba(255,255,255,.07);
+    }
+    .video-feature::before {
+      content: '';
+      position: absolute;
+      inset: 10% -20% auto;
+      height: 260px;
+      background: linear-gradient(90deg, transparent, rgba(39,217,195,.12), transparent);
+      filter: blur(34px);
+      transform: rotate(-8deg);
+      pointer-events: none;
+    }
+    .video-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(280px, .82fr) minmax(0, 1.18fr);
+      gap: 42px;
+      align-items: center;
+    }
+    .video-phone {
+      width: min(360px, 100%);
+      margin: 0 auto;
+      padding: 12px;
+      border-radius: 42px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.04)),
+        rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 34px 90px rgba(0,0,0,.46), 0 0 44px rgba(39,217,195,.12);
+      transform-style: preserve-3d;
+    }
+    .video-phone::before {
+      content: '';
+      display: block;
+      width: 72px;
+      height: 5px;
+      border-radius: 999px;
+      margin: 0 auto 10px;
+      background: rgba(255,255,255,.32);
+    }
+    .video-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      background: #050712;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .video-frame video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: #050712;
+    }
+    .video-badge {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(17,20,39,.72);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 900;
+    }
+    .video-content .section-copy { max-width: 620px; }
+    .video-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 26px;
+    }
+    .video-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 800;
+    }
+    .video-note {
+      margin-top: 16px;
+      color: var(--muted-2);
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+
     /* Stock */
     .stock-header {
       display: flex;
@@ -1535,6 +1640,13 @@
       .promo::before { font-size: 4.2rem; top: 10px; }
     }
 
+
+
+    @media (max-width: 820px) {
+      .video-grid { grid-template-columns: 1fr; gap: 28px; }
+      .video-content { order: -1; }
+      .video-phone { max-width: 330px; }
+    }
   </style>
 </head>
 <body>
@@ -1565,6 +1677,7 @@
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#productos">Productos</a></li>
         <li><a href="#stickers">Stickers UV</a></li>
+        <li><a href="#video">Video</a></li>
         <li><a href="#stock">Stock</a></li>
         <li><a href="#pedido">Cómo pedir</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -1668,14 +1781,45 @@
       </div>
     </section>
 
+
+
+    <section class="section video-feature" id="video">
+      <div class="container video-grid">
+        <div class="video-phone reveal tilt-3d">
+          <div class="video-frame">
+            <span class="video-badge">🎬 Trabajo destacado</span>
+            <video controls playsinline preload="metadata" poster="assets/poster-buzo-spiderman.jpg">
+              <source src="assets/video-buzo-spiderman.mp4" type="video/mp4" />
+              Tu navegador no puede reproducir este video.
+            </video>
+          </div>
+        </div>
+        <div class="video-content">
+          <div class="section-kicker reveal">Trabajo destacado</div>
+          <h2 class="section-title reveal">Buzo <span>personalizado</span></h2>
+          <p class="section-copy reveal">Mirá cómo queda un diseño personalizado aplicado en una prenda real. Ideal para pedidos temáticos, regalos especiales o diseños únicos hechos a pedido.</p>
+          <div class="video-tags reveal">
+            <span class="video-tag">🧥 Buzo personalizado</span>
+            <span class="video-tag">🕷️ Diseño temático</span>
+            <span class="video-tag">✨ Diseño a pedido</span>
+          </div>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="https://wa.me/543794042792?text=Hola!%20Vi%20el%20video%20del%20buzo%20personalizado%20y%20quiero%20consultar%20por%20uno%20parecido" target="_blank" rel="noopener">Pedir uno parecido</a>
+            <a class="btn btn-secondary" href="https://instagram.com/estampastudioctes" target="_blank" rel="noopener">Ver Instagram</a>
+          </div>
+          <p class="video-note reveal">Personalizamos prendas con tu idea, imagen o referencia. Consultanos por talles, disponibilidad y diseños similares.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="stock">
       <div class="container">
         <div class="stock-header">
           <div>
             <div class="section-kicker reveal">Stock actual</div>
             <h2 class="section-title reveal">Remeras <span>disponibles</span></h2>
-            <p class="section-copy reveal">Las fotos de esta sección son reales: son las remeras que cargás desde tu panel, con frente, dorso, talle/stock y precio. El cliente puede consultarlas por WhatsApp o agregarlas al carrito.</p>
-            <div class="stock-note reveal">✅ Stock real cargado por vos</div>
+            <p class="section-copy reveal">Remeras reales disponibles en stock, con fotos de frente y dorso, talle y precio. Podés consultarlas por WhatsApp o agregarlas al carrito.</p>
+            <div class="stock-note reveal">✅ Stock real disponible</div>
           </div>
           <a class="btn btn-secondary reveal" href="https://wa.me/543794042792?text=Hola!%20Quiero%20consultar%20por%20remeras%20disponibles" target="_blank" rel="noopener">Consultar stock</a>
         </div>
@@ -1689,7 +1833,7 @@
       <div class="container">
         <div class="section-kicker reveal">Proceso simple</div>
         <h2 class="section-title reveal">Cómo hacer <span>tu pedido</span></h2>
-        <p class="section-copy reveal">La idea es que el cliente entienda rápido qué tiene que hacer para pedir sin vueltas.</p>
+        <p class="section-copy reveal">Hacer tu pedido es simple: mandanos tu idea, confirmamos el diseño y coordinamos la entrega.</p>
         <div class="steps-grid">
           <article class="card reveal tilt-3d">
             <div class="step-number">1</div>
@@ -1719,7 +1863,7 @@
       <div class="container">
         <div class="section-kicker reveal">Redes y contacto</div>
         <h2 class="section-title reveal">Seguinos y <span>escribinos</span></h2>
-        <p class="section-copy reveal">La página vende, pero tus redes cierran la confianza: Instagram para mostrar trabajos y WhatsApp para tomar pedidos rápido.</p>
+        <p class="section-copy reveal">Seguinos en Instagram para ver trabajos, novedades y diseños disponibles. Para consultas y pedidos personalizados, escribinos por WhatsApp.</p>
 
         <div class="social-grid">
           <article class="social-card instagram reveal tilt-3d">
@@ -1734,10 +1878,10 @@
               <span class="social-pill">Stickers disponibles</span>
               <span class="social-pill">Ideas para regalos</span>
             </div>
-            <p>El Instagram funciona como catálogo vivo: subí fotos de entregas, remeras nuevas, stickers y promos para que el cliente vea que el emprendimiento está activo.</p>
+            <p>Mirá trabajos realizados, nuevos diseños, stickers disponibles, promos y pedidos personalizados.</p>
             <div class="social-actions">
               <a class="btn btn-primary" href="https://instagram.com/estampastudioctes" target="_blank" rel="noopener">📸 Abrir Instagram</a>
-              <a class="btn btn-secondary" href="https://wa.me/543794042792?text=Hola!%20Vi%20su%20Instagram%20y%20quiero%20consultar%20por%20un%20pedido" target="_blank" rel="noopener">Vengo de IG</a>
+              <a class="btn btn-secondary" href="https://wa.me/543794042792?text=Hola!%20Vi%20su%20Instagram%20y%20quiero%20consultar%20por%20un%20pedido" target="_blank" rel="noopener">Consultar desde IG</a>
             </div>
             <div class="social-handle">@estampastudioctes</div>
           </article>
@@ -1753,7 +1897,7 @@
               <span class="social-pill">Diseño personalizado</span>
               <span class="social-pill">Stock real</span>
             </div>
-            <p>El cliente toca y ya manda el mensaje armado. Puede consultar por remeras, stickers, tazas o enviar una foto/idea para personalizar.</p>
+            <p>Consultá por remeras, stickers, tazas o mandanos una foto/idea para hacer un pedido personalizado.</p>
             <div class="social-actions">
               <a class="btn btn-whatsapp" href="https://wa.me/543794042792?text=Hola%20Estampa%20Studio!%20Quiero%20pedir%20un%20presupuesto.%20Tengo%20esta%20idea:" target="_blank" rel="noopener">💬 Escribir ahora</a>
               <a class="btn btn-secondary" href="https://wa.me/543794042792?text=Hola!%20Quiero%20consultar%20por%20stickers%20DTF%20UV%203%20por%202000" target="_blank" rel="noopener">Stickers 3 x $2.000</a>
@@ -1805,7 +1949,7 @@
       <div class="container">
         <div class="section-kicker reveal">Contacto</div>
         <h2 class="section-title reveal">¿Tenés una idea? <span>La estampamos.</span></h2>
-        <p class="section-copy reveal">Mandanos una foto, logo, frase o idea. Te respondemos por WhatsApp y vemos la mejor opción para hacerlo en sublimación, DTF o stickers UV.</p>
+        <p class="section-copy reveal">Mandanos tu foto, logo, frase o idea y vemos la mejor opción para personalizarla en sublimación, DTF o stickers UV.</p>
         <div class="hero-actions reveal" style="justify-content:center;">
           <a class="btn btn-whatsapp" href="https://wa.me/543794042792?text=Hola%20Estampa%20Studio!%20Quiero%20consultar%20por%20un%20pedido" target="_blank" rel="noopener">💬 WhatsApp</a>
           <a class="btn btn-secondary" href="https://instagram.com/estampastudioctes" target="_blank" rel="noopener">📸 Instagram</a>
